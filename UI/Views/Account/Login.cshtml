@@ -1,0 +1,91 @@
+@model Management.Models.User
+@if (User.Identity.IsAuthenticated)
+{
+
+
+Layout = "_DashboardLayout";
+
+
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+     
+    }
+
+    .login-container {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+    }
+
+    .login-container form {
+        margin-bottom: 0;
+    }
+
+    .login-container label {
+        font-weight: bold;
+    }
+
+    .login-container .btn-primary {
+        width: 100%;
+    }
+
+    .login-container .form-control {
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .login-container .form-control:focus {
+        border-color: #007bff;
+      
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        
+    }
+</style>
+
+<div class="container-fluid py-5" style="background-color: #f8f9fa;">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+            <div class="login-container">
+                <h2 class="text-center mb-4">Login</h2>
+                <form asp-controller="Account" id="loginForm" asp-action="Login" method="post" class="needs-validation"
+                    novalidate>
+                    <div class="mb-3">
+                        <label for="txtEmail" class="form-label">Email address</label>
+                        <input asp-for="Email" id="txtEmail" class="form-control" placeholder="Enter your email"
+                            required>
+                        <div class="invalid-feedback">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="txtPassword" class="form-label">Password</label>
+                        <input asp-for="Password" id="txtPassword" type="password" class="form-control"
+                            placeholder="Password" required>
+                        <div class="invalid-feedback">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-primary" onclick="validateUser()">Login</button>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="#" class="text-decoration-none">Forgot password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script src="~/js/Login.js"></script>
+}

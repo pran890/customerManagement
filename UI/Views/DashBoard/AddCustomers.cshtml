@@ -1,0 +1,189 @@
+
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@{
+    Layout = "_DashboardLayout";    
+       var isCoordinator = User.HasClaim(ClaimTypes.Role, "Coordinator");
+         var isExecutive = User.HasClaim(ClaimTypes.Role, "Executive"); 
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Add Customers</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9ecef;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .card-footer {
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4 class="card-title mb-0">Add Customer</h4>
+                    </div>
+                      @if (isCoordinator){
+
+                    <div class="card-body p-4">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="name">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="email" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="manager">Manager</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                    </div>
+                                    <select class="form-control" id="manager" required>
+                                        <option value="">Select a manager</option>
+                                    </select>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="coordinator">Coordinator</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                    </div>
+                                    <select class="form-control" id="coordinator" required onchange=generate()>
+                                        <option value="">Select a coordinator</option>
+                                    </select>
+                                </div>
+                            </div>
+                           
+                             <div class="form-group" id="executiveField" style="display: none;">
+                            <label for="executive">Executive</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                </div>
+                                <select class="form-control" id="executive" required>
+                                    <option value="">Select an executive</option>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                           
+                            <button type="submit" class="btn btn-primary btn-block" onclick=AddCustomer()>Submit</button>
+                        </form>
+                    </div>
+                      }
+
+                       @if (isExecutive){
+
+                    <div class="card-body p-4">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="name">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="email" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="manager">Manager</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                    </div>
+                                    <select class="form-control" id="manager" required>
+                                        <option value="">Select a manager</option>
+                                    </select>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label for="coordinator">Coordinator</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                    </div>
+                                    <select class="form-control" id="coordinator" required>
+                                        <option value="">Select a coordinator</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="executive">Executive</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                    </div>
+                                    <select class="form-control" id="executive" required>
+                                        <option value="">Select an executive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                           
+                            <button type="submit" class="btn btn-primary btn-block" onclick=AddCustomer()>Submit</button>
+                        </form>
+                    </div>
+                      }
+                    <div class="card-footer text-muted text-center">
+                        <small>Fill all the fields before submitting</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="~/js/AddCustomer.js"></script>
+</body>
+</html>

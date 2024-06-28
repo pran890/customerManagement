@@ -1,0 +1,24 @@
+.navbar-nav .nav-item.view-customers a.nav-link,
+.navbar-nav .nav-item.add-customers a.nav-link {
+    font-weight: bold;
+    color: #007bff; 
+}
+
+.navbar-nav .nav-item.view-customers a.nav-link:hover,
+.navbar-nav .nav-item.add-customers a.nav-link:hover {
+    color: #0056b3; 
+}
+
+.dropdown-menu {
+    background-color: #f8f9fa; 
+    border: 1px solid #ced4da; 
+}
+
+.dropdown-menu a.dropdown-item {
+    color: #343a40; 
+}
+
+.dropdown-menu a.dropdown-item:hover {
+    background-color: #007bff; 
+    color: #fff; 
+}
