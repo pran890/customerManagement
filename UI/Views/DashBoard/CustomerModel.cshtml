@@ -1,0 +1,198 @@
+
+
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@{
+var isAdmin = User.HasClaim(ClaimTypes.Role, "Admin");
+bool hasSpecificPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Value == "AddFollowup");
+
+}
+<!-- Existing Customer Details Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold fs-3" id="editModalLabel" style="flex: 1">Customer Details</h5>
+                <button type="button" class="close close-btn fw-bold" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-md">
+                    <form class="row g-3 my-4" id="editCustomerForm">
+                        <div class="col-md-6">
+                            <label for="customerName" class="form-label">Customer Name</label>
+                            <input type="text" class="form-control" id="customerName" name="customerName" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="createdDate" class="form-label">Created Date</label>
+                            <input type="text" class="form-control" id="createdDate" name="createdDate" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="domain" class="form-label">Domain</label>
+                            <input type="text" class="form-control" id="domain" name="domain" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phoneNo" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phoneNo" name="phoneNo" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="container-md p-3" style="border: 1px solid #dee2e6; border-radius: 5px;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      @if (hasSpecificPrivilege){
+
+                        <button type="button" class="btn btn-primary btn-sm" id="addFollowUpBtn" onclick=generatecustomerDetails()>Add Follow-Up</button>
+                      }
+                        <div class="flex-grow-1 text-center">
+                            <h5 class="mb-0">Follow-Up Details</h5>
+                        </div>
+                    </div>
+                    <table id="follow-up" class="table table-striped table-bordered">
+                        
+                       
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveChangesBtn">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="addFollowUpModal" tabindex="-1" role="dialog" aria-labelledby="addFollowUpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold fs-3" id="addFollowUpModalLabel" style="flex: 1">Add Follow-Up</h5>
+                <button type="button" class="close fw-bold" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addFollowUpForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="reviewer" class="form-label">Reviewer</label>
+                            <input type="text" class="form-control" id="reviewer" name="reviewer" required readonly>
+                        </div>
+                        @* <div class="col-md-6">
+                            <label for="status" class="form-label">Status</label>
+                            <input type="text" class="form-control" id="status" name="status" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="type" class="form-label">Type</label>
+                            <input type="text" class="form-control" id="type" name="type" required>
+                        </div> *@
+                        <div class="col-md-6">
+                            <label for="note" class="form-label">Note</label>
+                            <input type="text" class="form-control" id="note" name="note" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="date" class="form-control date" id="date" name="date" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="time" class="form-label">Time</label>
+                            <input type="time" class="form-control time" id="time" name="time" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveFollowUpBtn" onclick=AddFolloups()>Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* edit form *@
+
+
+<div class="modal fade" id="EditFollowUpModal" tabindex="-1" role="dialog" aria-labelledby="EditFollowUpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold fs-3" id="EditFollowUpModalLabel" style="flex: 1">Edit Follow-Up</h5>
+                <button type="button" class="close fw-bold" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="EditFollowUpForm">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label for="old-note" class="form-label">Current Note</label>
+                            <input type="text" class="form-control" id="old-note" name="old-note" required readonly>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="new-note" class="form-label">New Note</label>
+                            <input type="text" class="form-control" id="new-note" name="new-note" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit_date" class="form-label">Date</label>
+                            <input type="date" class="form-control date" id="edit_date" name="date" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="edit_time" class="form-label">Time</label>
+                            <input type="time" class="form-control time" id="edit_time" name="time" required>
+                        </div>
+                        <div class="col-md-12 form-check">
+                            <input type="checkbox" class="form-check-input" id="done" name="done">
+                            <label for="done" class="form-check-label">Mark as Done</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveEditFollowUpBtn" onclick="EditFollowUps()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+/>
+<script
+  type="text/javascript"
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+></script> 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+  rel="stylesheet"
+  type="text/css"
+  href="~/css/model.css"
+/>
+<link
+  rel="stylesheet"
+  href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+  <script>
+   
+        var isAdmin = @isAdmin.ToString().ToLower(); // converts true/false to javascript boolean
+    var hasSpecificPrivilege = @hasSpecificPrivilege.ToString().ToLower();
+        // Add more properties for other ViewBag values as needed
+   
+    </script>
+
+<script src="~/js/ShowCustomers.js"></script>
+<script src="~/js/Followup.js"></script>
+}
+

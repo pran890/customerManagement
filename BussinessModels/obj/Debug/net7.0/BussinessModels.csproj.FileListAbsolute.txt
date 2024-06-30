@@ -1,0 +1,15 @@
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\bin\Debug\net7.0\BussinessModels.exe
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\bin\Debug\net7.0\BussinessModels.deps.json
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\bin\Debug\net7.0\BussinessModels.runtimeconfig.json
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\bin\Debug\net7.0\BussinessModels.dll
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\bin\Debug\net7.0\BussinessModels.pdb
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\obj\Debug\net7.0\BussinessModels.csproj.AssemblyReference.cache
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\obj\Debug\net7.0\BussinessModels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\obj\Debug\net7.0\BussinessModels.AssemblyInfoInputs.cache
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\obj\Debug\net7.0\BussinessModels.AssemblyInfo.cs
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\obj\Debug\net7.0\BussinessModels.csproj.CoreCompileInputs.cache
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\obj\Debug\net7.0\BussinessModels.dll
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\obj\Debug\net7.0\refint\BussinessModels.dll
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\obj\Debug\net7.0\BussinessModels.pdb
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\obj\Debug\net7.0\BussinessModels.genruntimeconfig.cache
+C:\Users\Pranav\Documents\Customer Management\BussinessModels\obj\Debug\net7.0\ref\BussinessModels.dll
