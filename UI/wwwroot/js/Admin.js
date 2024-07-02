@@ -20,6 +20,7 @@ function getUsers() {
     success: function (result) {
       console.log(result);
       generateFields(result);
+      createUserRoleTable(result);
     },
     error: function (error) {
       console.log(error);
@@ -66,4 +67,31 @@ function AddRole() {
       alert("Error checking email. Please try again.");
     },
   });
+}
+
+
+function createUserRoleTable(data) {
+  if ($.fn.DataTable.isDataTable("#user-role-table")) {
+    var table = $("#user-role-table").DataTable();
+    table.clear().draw();
+    table.rows.add(data).draw();
+  }
+  else {
+    $('#user-role-table').DataTable({
+      data: data,
+      
+
+      columns: [
+        { data: 'Username', title: 'Username' },
+   
+        { data: 'RoleNames', title: 'RoleNames' },
+        
+       
+      ],
+    
+    });
+  }
+
+
+ 
 }

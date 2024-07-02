@@ -8,3 +8,9 @@
 #follow-up_filter{
     margin-bottom: 21px;
 }
+#followup-table{
+    margin: auto;
+}
+#editModal{
+    overflow-y: auto;
+}

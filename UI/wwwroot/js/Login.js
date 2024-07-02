@@ -8,7 +8,7 @@ function validateUser() {
     var email = $("#txtEmail").val().trim();
     var password = $("#txtPassword").val().trim();
 
-    if (email === "" || password === "") {
+    if (email =="" || password == "") {
         alert("Please enter email and password.");
         return;
     }
@@ -25,10 +25,16 @@ function validateUser() {
         dataType: "json",
         type: "POST",
         success: function (result) {
-            console.log(result);
-            localStorage.setItem("userId",result);
-            alert("Login successful");
-            window.location.replace("http://localhost:5025/DashBoard/ViewCustomers");
+            if(result){
+                console.log(result);
+                localStorage.setItem("userId",result);
+                alert("Login successful");
+                window.location.replace("http://localhost:5025/DashBoard/ViewCustomers");
+
+            }
+            else{
+                alert("Invalid credentials");
+            }
         },
         error: function (error) {
             console.log(error);
