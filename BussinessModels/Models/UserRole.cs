@@ -7,6 +7,8 @@ namespace CRUD.Models
     {
         public int Id { get; set; }
         public int rId { get; set; }
+         public int cId { get; set; }
+        public int mId { get; set; }
      
     }
 }

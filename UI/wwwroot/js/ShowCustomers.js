@@ -2,6 +2,7 @@ var url = new URL(window.location.href);
 localStorage.setItem("port", url.port);
 var customerData;
 var cusId;
+var cTable;
 var port = localStorage.getItem("port");
 var apiUrl = `http://localhost:${port}/api/`;
 document.addEventListener("DOMContentLoaded", function () {
@@ -33,39 +34,57 @@ function getCustomers() {
 }
 
 function createTable(data) {
-  $('#customers-table').DataTable({
-    data: data,
-    columns: [
-      { data: 'Username', title: 'Username' },
-      { data: 'ManagerName', title: 'Manager Name' },
-      { data: 'CoordinatorName', title: 'Coordinator Name' },
-      { data: 'ExecutiveName', title: 'Executive Name' },
-      { data: 'CustomerName', title: 'Customer Name' },
-      {
-        data: null,
-        title: 'Actions',
-        render: function (data, type, row) {
-          return '<i class="fa fa-pencil edit-icon" data-id="' + row.cid + '" style="cursor:pointer;"></i>';
-        },
-        orderable: false
+  if ($.fn.DataTable.isDataTable("#customers-table")) {
+    var table = $("#customers-table").DataTable();
+    table.clear().draw();
+    table.rows.add(data).draw();
+    cTable=$("#customers-table").DataTable();
+  }
+  else{
+
+    cTable = $('#customers-table').DataTable({
+      data: data,
+      columns: [
+        { data: 'Username', title: 'Username' },
+        { data: 'ManagerName', title: 'Manager Name' },
+        { data: 'CoordinatorName', title: 'Coordinator Name' },
+        { data: 'ExecutiveName', title: 'Executive Name' },
+        { data: 'CustomerName', title: 'Customer Name' },
+        {data: 'dueCount', title: 'DueCount'},
+        {data: 'ScheduledCount', title: 'ScheduledCount'},
+        
+        {
+          data: null,
+          title: 'Actions',
+          render: function (data, type, row) {
+            return '<i class="fa fa-pencil edit-icon" data-id="' + row.cid + '" style="cursor:pointer;"></i>';
+          },
+          orderable: false
+        }
+      ],
+      rowCallback: function (row, data, index) {
+  
+        $(row).find('td:eq(5)').css('color', 'red');
+        $(row).find('td:eq(6)').css('color', 'orange');
+  
       }
-    ]
-  });
+    });
+  }
   $(".custom-loader").css("display", "none");
- 
+
   $('#customers-table').on('click', '.edit-icon', function () {
     var customerId = $(this).data('id');
     console.log(customerId);
-    localStorage.setItem("cusid",customerId);
+    localStorage.setItem("cusid", customerId);
     generatecustomerFollowUpData();
     fetchCustomerDetails(customerId);
   });
 
   function fetchCustomerDetails(cId) {
-   
-      cusId=cId;
+
+    cusId = cId;
     var customerDetails = fetchCustomerByCid(cId);
-     console.log(customerDetails,cId);
+    console.log(customerDetails, cId);
     $('#customerName').val(customerDetails.
       CustomerName
     );
@@ -76,16 +95,26 @@ function createTable(data) {
 
     // Show modal
     // jQuery.noConflict();
-    // $('#editModal').modal();
-    $('#editModal').modal('show');
+    $('#editModal').modal();
+    // $('#editModal').modal('show');
   }
   console.log("kl");
 
   $('#addFollowUpBtn').on('click', function () {
     // jQuery.noConflict();
-    // $('#addFollowUpModal').modal();
-    $('#addFollowUpModal').modal('show');
+    $('#addFollowUpModal').modal();
+    // $('#addFollowUpModal').modal('show');
   });
+  // var oTable =cTable.DataTable({ 
+  //   rowCallback: function(row, data, index){
+  //     if(data[3]> 11.7){
+  //       $(row).find('td:eq(3)').css('color', 'red');
+  //     }
+  //     if(data[2].toUpperCase() == 'EE'){
+  //       $(row).find('td:eq(2)').css('color', 'blue');
+  //     }
+  //   }
+  // });
 }
 function fetchCustomerByCid(cid) {
   return customerData.find(function (customer) {

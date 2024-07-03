@@ -8322,11 +8322,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pranav\\Documents\\Customer Management\\ui\\Customer Management.csproj",
+      "projectUniqueName": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\Customer Management.csproj",
       "projectName": "Customer Management",
-      "projectPath": "C:\\Users\\Pranav\\Documents\\Customer Management\\ui\\Customer Management.csproj",
+      "projectPath": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\Customer Management.csproj",
       "packagesPath": "C:\\Users\\Pranav\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pranav\\Documents\\Customer Management\\ui\\obj\\",
+      "outputPath": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Pranav\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -8341,8 +8341,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Pranav\\Documents\\Customer Management\\Api\\Api.csproj": {
-              "projectPath": "C:\\Users\\Pranav\\Documents\\Customer Management\\Api\\Api.csproj"
+            "C:\\Users\\Pranav\\Documents\\Customer_Management\\Api\\Api.csproj": {
+              "projectPath": "C:\\Users\\Pranav\\Documents\\Customer_Management\\Api\\Api.csproj"
             }
           }
         }

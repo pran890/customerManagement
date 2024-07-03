@@ -58,6 +58,8 @@ function getFolloups() {
       console.log(cusid);
       if (cusid) {
         generatecustomerFollowUpData();
+
+        getCustomers();
       }
       // generateFields(result,p);
 
@@ -81,12 +83,35 @@ function createFollowupTable(data) {
       data: data,
       columns: [
         { data: 'CreatedByName', title: 'Created By' },
-        { data: 'CreatedOn', title: 'Created On' },
-        { data: 'FollowUpDate', title: 'Follow-Up Date' },
+
+        // {
+        //   data: 'FollowUpDate', title: 'Follow-Up Date'
+                  
+
+        // },
+        {
+
+         
+          data: 'FollowUpDate',
+          title: 'FollowUpDate',
+          render: function (data, type, row) {
+                 console.log(data);
+            var followUpDate = new Date(data);
+            console.log(followUpDate);
+          
+            followUpDate.setDate(followUpDate.getDate() + 1);
+          
+            var formattedDate = followUpDate.toISOString().split('T')[0];
+            console.log(formattedDate);
+            return formattedDate
+  
+          },
+        },
         { data: 'FollowUpTime', title: 'Follow-Up Time' },
         { data: 'Note', title: 'Note' },
         { data: 'ReviewerName', title: 'Reviewer Name' },
         { data: 'Status', title: 'Status' },
+        { data: 'CreatedOn', title: 'Created On' },
         {
           data: null,
           title: 'Actions',
@@ -119,28 +144,34 @@ function createFollowupTable(data) {
 
   $('#follow-up').on('click', '.edit-icon', function () {
     // jQuery.noConflict();
-    $('#EditFollowUpModal').modal('show');
-    // $('#EditFollowUpModal').modal();
+    // $('#EditFollowUpModal').modal('show');
+    $('#EditFollowUpModal').modal();
     var followupId = $(this).data('id');
     fid = followupId
     console.log(followupId);
     fetchFollowupDetails(fid);
   });
 
-  function fetchFollowupDetails(fId) {
 
+  function fetchFollowupDetails(fId) {
     var followUpDetails = fetchFollowupByfid(fId);
     console.log(followUpDetails, fId);
-    $('#old-note').val(followUpDetails.
-      Note
-    );
-    // $('#createdDate').val(customerDetails.createdDate);
-    // $('#description').val(customerDetails.description);
-    // // $('#domain').val(customerDetails.domain);
-    // $('#phoneNo').val(customerDetails.phoneNo);
+
+    $('#old-note').val(followUpDetails.Note);
+
+    var followUpDate = new Date(followUpDetails.FollowUpDate);
+    console.log(followUpDate);
+
+    followUpDate.setDate(followUpDate.getDate() + 1);
+
+    var formattedDate = followUpDate.toISOString().split('T')[0];
+    console.log(formattedDate);
 
 
+    $('#edit_date').val(formattedDate);
+    $('#edit_time').val(followUpDetails.FollowUpTime);
   }
+
 
   function fetchFollowupByfid(cid) {
     return followupData.find(function (customer) {
@@ -194,7 +225,15 @@ function AddFolloups() {
     FollowUpDate: date,
     time: time
   };
+  if (!date || !time || !note) {
+    alert("fields cannot be empty.");
+    return;
+  }
 
+  const buttons = document.getElementById("saveFollowUpBtn")
+
+
+  buttons.setAttribute("data-dismiss", "modal");
   console.log(followUpDetails);
 
 
@@ -206,10 +245,9 @@ function AddFolloups() {
     type: "POST",
     success: function (result) {
       console.log(result);
-      setTimeout(() => {
 
-        getFolloups();
-      }, 1000);
+      getFolloups();
+
       // $('#EditFollowUpModal').modal('hide');
     },
     error: function (error) {
@@ -233,6 +271,14 @@ function EditFollowUps() {
   if (status) status = 1;
   else status = 0;
   console.log(status);
+  if (!date || !time) {
+    alert("Date and time fields cannot be empty.");
+    return;
+  }
+  const buttons = document.getElementById("saveEditFollowUpBtn")
+
+
+  buttons.setAttribute("data-dismiss", "modal");
   var followUpDetails = {
     uId: uid,
     fId: fid,
@@ -252,10 +298,12 @@ function EditFollowUps() {
     type: "POST",
     success: function (result) {
       console.log(result);
-      setTimeout(() => {
 
-        getFolloups()
-      }, 1000);
+
+
+
+      getFolloups()
+
     },
     error: function (error) {
       console.log(error);

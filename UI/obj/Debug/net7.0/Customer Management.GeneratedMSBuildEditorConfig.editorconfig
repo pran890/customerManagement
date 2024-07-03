@@ -9,81 +9,93 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Customer_Management
 build_property.RootNamespace = Customer_Management
-build_property.ProjectDir = C:\Users\Pranav\Documents\Customer Management\ui\
+build_property.ProjectDir = C:\Users\Pranav\Documents\Customer_Management\ui\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Pranav\Documents\Customer Management\ui
+build_property.MSBuildProjectDirectory = C:\Users\Pranav\Documents\Customer_Management\ui
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/Account/AccessDenied.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/Account/Login.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/Account/Register.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/DashBoard/AddCustomers.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/DashBoard/AddCustomers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXEFkZEN1c3RvbWVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/DashBoard/Admin.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/DashBoard/AddPrivelage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXEFkZFByaXZlbGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/DashBoard/Admin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXEFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/DashBoard/AdminAddCustomers.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/DashBoard/AdminAddCustomers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXEFkbWluQWRkQ3VzdG9tZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/DashBoard/CustomerModel.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/DashBoard/CustomerModel.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXEN1c3RvbWVyTW9kZWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/DashBoard/Tree.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/DashBoard/Tree.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXFRyZWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/DashBoard/ViewCustomers.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/DashBoard/ViewCustomers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXFZpZXdDdXN0b21lcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/Home/Index.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/Home/Privacy.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/Shared/Error.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/Shared/_DashboardLayout.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Shared/LogoutDropdown.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExvZ291dERyb3Bkb3duLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Shared/Settings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNldHRpbmdzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Shared/_DashboardLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EYXNoYm9hcmRMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/Shared/_Layouts.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Shared/_Layouts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/_ViewImports.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/_ViewStart.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Pranav/Documents/Customer Management/ui/Views/Shared/_Layout.cshtml]
+[C:/Users/Pranav/Documents/Customer_Management/ui/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-1r1dbgqci7

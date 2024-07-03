@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pranav\\Documents\\Customer Management\\BussinessModels\\BussinessModels.csproj": {}
+    "C:\\Users\\Pranav\\Documents\\Customer_Management\\BussinessModels\\BussinessModels.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pranav\\Documents\\Customer Management\\BussinessModels\\BussinessModels.csproj": {
+    "C:\\Users\\Pranav\\Documents\\Customer_Management\\BussinessModels\\BussinessModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pranav\\Documents\\Customer Management\\BussinessModels\\BussinessModels.csproj",
+        "projectUniqueName": "C:\\Users\\Pranav\\Documents\\Customer_Management\\BussinessModels\\BussinessModels.csproj",
         "projectName": "BussinessModels",
-        "projectPath": "C:\\Users\\Pranav\\Documents\\Customer Management\\BussinessModels\\BussinessModels.csproj",
+        "projectPath": "C:\\Users\\Pranav\\Documents\\Customer_Management\\BussinessModels\\BussinessModels.csproj",
         "packagesPath": "C:\\Users\\Pranav\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pranav\\Documents\\Customer Management\\BussinessModels\\obj\\",
+        "outputPath": "C:\\Users\\Pranav\\Documents\\Customer_Management\\BussinessModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pranav\\AppData\\Roaming\\NuGet\\NuGet.Config"
