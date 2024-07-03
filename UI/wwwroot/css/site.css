@@ -16,7 +16,18 @@ html {
   position: relative;
   min-height: 100%;
 }
-
+#dash-nav{
+  z-index: 1;
+}
+.navbar{
+  z-index: 1;
+}
 body {
   margin-bottom: 60px;
+}
+
+.dropdown-menu {
+ 
+  min-width: 6rem;
+
 }

@@ -5,10 +5,11 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Threading.Tasks;
-using Management.Models;
+using CRUD.Models;
+using api_application_dal;
 using Microsoft.Extensions.Configuration;
 
-namespace Db.Data
+namespace api_application.Controllers
 {
     public class UserRepository
     {
@@ -56,7 +57,7 @@ namespace Db.Data
 
         public List<string> GetPrivilegesByRoleIdAsync(int roleId)
         {
-            Console.WriteLine(roleId);
+            Console.WriteLine("mnb");
             var privileges = new List<string>();
 
             using (var connection = new SqlConnection(_connectionString))

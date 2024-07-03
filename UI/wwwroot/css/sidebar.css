@@ -1,0 +1,84 @@
+.sidebar {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: auto;
+    height: 35%;
+    background-color: #343a40;
+    padding-top: 21px;
+    }
+        .sidebar ul.navbar-nav {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .sidebar .nav-item {
+            width: 100%;
+        }
+
+        .sidebar .nav-link {
+            padding: 10px 15px;
+            color: #ffffff; /* white text */
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #454d55; /* slightly lighter background on hover */
+            color: #ffffff; /* white text on hover */
+        }
+
+        /* Content Area Styles */
+        .content-area {
+            margin-left: 250px; /* match sidebar width */
+            padding: 20px;
+        }
+
+        /* Form Styles */
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .input-group-text {
+            background-color: #007bff; /* primary color background */
+            color: #ffffff; /* white text */
+        }
+
+        .card-header {
+            background-color: #007bff; /* primary color background */
+            color: #ffffff; /* white text */
+        }
+
+        /* Table Styles */
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .hide-elements {
+            display: none;
+        }
+
+        .mt-5 {
+            margin-top: 50px;
+        }
+
+        /* Custom DataTable Styles */
+        #user-role-table_wrapper {
+            width: 100%; /* Set width to 100% */
+        }
+
+        #user-role-table {
+            width: 100% !important; /* Ensure table takes full width */
+        }
+        #role-contain{
+            width:50%
+        }
+
+        #user{
+            height: 20%;
+        }
