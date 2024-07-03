@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pranav\\Documents\\Customer_Management\\Database\\Database.csproj": {}
+    "C:\\Users\\Pranav\\Documents\\pr1\\customerManagement\\Database\\Database.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pranav\\Documents\\Customer_Management\\Database\\Database.csproj": {
+    "C:\\Users\\Pranav\\Documents\\pr1\\customerManagement\\Database\\Database.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pranav\\Documents\\Customer_Management\\Database\\Database.csproj",
+        "projectUniqueName": "C:\\Users\\Pranav\\Documents\\pr1\\customerManagement\\Database\\Database.csproj",
         "projectName": "Database",
-        "projectPath": "C:\\Users\\Pranav\\Documents\\Customer_Management\\Database\\Database.csproj",
+        "projectPath": "C:\\Users\\Pranav\\Documents\\pr1\\customerManagement\\Database\\Database.csproj",
         "packagesPath": "C:\\Users\\Pranav\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pranav\\Documents\\Customer_Management\\Database\\obj\\",
+        "outputPath": "C:\\Users\\Pranav\\Documents\\pr1\\customerManagement\\Database\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pranav\\AppData\\Roaming\\NuGet\\NuGet.Config"

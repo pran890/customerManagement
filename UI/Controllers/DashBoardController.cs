@@ -39,7 +39,7 @@ namespace Mangement.Controllers
             return View("AddCustomers");
         }
 
-        }   
+         
 
         [Authorize(Policy = "RequireEmail")]
         public IActionResult ViewCustomers()
