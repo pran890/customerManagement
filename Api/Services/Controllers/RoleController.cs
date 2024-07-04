@@ -27,8 +27,8 @@ namespace api_application.Controllers
 
 
          [HttpPost]
-        [Route("AddRole")]
-        public int AddRole(UserRole r)
+        [Route("AddUserRole")]
+        public int AddUserRole(UserRole r)
         {
             // Response responses = new Response();
             // List<Role> lstRole = new List<Role>();

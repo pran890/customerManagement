@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "P5zjBV0RYunF5QiHe6KiK5Pxq5JaZ41TLCWgPfZ6Zig=",
+  "Hash": "fCQfQIXPperHZqhAik/N0kFRRFb3AMt7KsD8R1RF/n4=",
   "Source": "Customer Management",
   "BasePath": "_content/Customer Management",
   "Mode": "Default",
@@ -146,6 +146,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\ShowCustomer.css"
+    },
+    {
+      "Identity": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\css\\sidebar.css",
+      "SourceId": "Customer Management",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\",
+      "BasePath": "_content/Customer Management",
+      "RelativePath": "css/sidebar.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\sidebar.css"
     },
     {
       "Identity": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\css\\site.css",
@@ -316,6 +333,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Login.js"
+    },
+    {
+      "Identity": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\js\\Privelage.js",
+      "SourceId": "Customer Management",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\",
+      "BasePath": "_content/Customer Management",
+      "RelativePath": "js/Privelage.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Privelage.js"
     },
     {
       "Identity": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\js\\Register.js",

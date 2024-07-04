@@ -1,124 +1,210 @@
-
-
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Identity
-@using System.Security.Claims
 @{
     Layout = "_DashboardLayout";    
- 
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Add Customers</title>
-    <link rel="stylesheet" href="~/css/Setting.css" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css"/>
+    <style>
+        /* Sidebar Styles */
+       .sidebar {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: auto;
+    height: 15%;
+    background-color: #343a40;
+    padding-top: 15px;
+    }
+        .sidebar ul.navbar-nav {
+            flex-direction: column;
+            width: 100%;
+        }
 
+        .sidebar .nav-item {
+            width: 100%;
+        }
+
+        .sidebar .nav-link {
+            padding: 10px 15px;
+            color: #ffffff; /* white text */
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #454d55; /* slightly lighter background on hover */
+            color: #ffffff; /* white text on hover */
+        }
+
+        /* Content Area Styles */
+        .content-area {
+            margin-left: 250px; /* match sidebar width */
+            padding: 20px;
+        }
+
+        /* Form Styles */
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .input-group-text {
+            background-color: #007bff; /* primary color background */
+            color: #ffffff; /* white text */
+        }
+
+        .card-header {
+            background-color: #007bff; /* primary color background */
+            color: #ffffff; /* white text */
+        }
+
+        /* Table Styles */
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .hide-elements {
+            display: none;
+        }
+
+        .mt-5 {
+            margin-top: 50px;
+        }
+
+        /* Custom DataTable Styles */
+        #user-role-table_wrapper {
+            width: 100%; /* Set width to 100% */
+        }
+
+        #user-role-table {
+            width: 100% !important; /* Ensure table takes full width */
+        }
+        #role-contain{
+            width:50%;
+        }
+        .fields{
+            display:none;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header bg-primary text-white text-center">
-                        <h4 class="card-title mb-0">Add Role</h4>
-                    </div>
-                    <div class="card-body p-4">
-                        <form>
-                            <div id="roleSection">
-                                <div class="form-group">
-                                    <label for="User">User</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
-                                        </div>
-                                        <select class="form-control" id="user" required>
-                                            <option value="">Select a User</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="role">Role</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
-                                        </div>
-                                        <select class="form-control" id="role" required onchange="togglePrivilegeSection()">
-                                            <option value="">Select a Role</option>
-                                            <option value="2">Manager</option>
-                                            <option value="3">Coordinator</option>
-                                            <option value="4">Executive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="manager">Manager</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
-                                        </div>
-                                        <select class="form-control" id="manager" required onchange="showCoordinatorAndExecutive()">
-                                            <option value="">Select a manager</option>
-                                            <!-- Add more options as needed -->
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                            </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="DashBoard" asp-action="Admin">Add Role</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="DashBoard" asp-action="AddPrivelage">Add Privilege</a>
+            </li>
+        </ul>
+    </div>
 
-                            
-                            @* <div id="privilegeSection" style="display: none;">
-                                <div class="form-group">
-                                    <label for="privilege">Privilege</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                        </div>
-                                        <select class="form-control" id="privilege" required>
-                                            <option value="">Select a Privilege</option>
-                                            <!-- Populate options dynamically based on role -->
-                                        </select>
+    <!-- Content Area -->
+   <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="card-title mb-0">Add Role</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form>
+                        <div id="roleSection">
+                            <div class="form-group">
+                                <label for="User">User</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
                                     </div>
+                                    <select class="form-control form-select" id="user" required>
+                                        <option value="">Select a User</option>
+                                        <!-- Add options dynamically -->
+                                    </select>
                                 </div>
-                            </div> *@
+                            </div>
                             
-                            <button type="button" class="btn btn-primary btn-block" onclick="AddRole()">Submit</button>
-                        </form>
-                    </div>
-                    <div class="card-footer text-muted text-center">
-                        <small>Fill all the fields before submitting</small>
-                    </div>
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                    </div>
+                                    <select class="form-control" id="role" required onchange="toggleFields()">
+                                        <option value="">Select a Role</option>
+                                        <option value="2">Manager</option>
+                                        <option value="3">Coordinator</option>
+                                        <option value="4">Executive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group fields" id="managerField">
+                                <label for="manager">Manager</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                    </div>
+                                    <select class="form-control" id="manager" onchange="showCoordinatorField()">
+                                        <option value="">Select a Manager</option>
+                                        <!-- Add options dynamically -->
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group fields" id="coordinatorField">
+                                <label for="coordinator">Coordinator</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                                    </div>
+                                    <select class="form-control" id="coordinator">
+                                        <option value="">Select a Coordinator</option>
+                                        <!-- Add options dynamically -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary btn-block" onclick="AddRole()">Submit</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    <small>Fill all the fields before submitting</small>
                 </div>
             </div>
         </div>
-     
     </div>
-    <div class="elements">
-  <div id="table-container">
-    <h2 class="hide-elements">UserRoles</h2>
-
-     <table id="user-role-table" class="table table-striped table-bordered">
-           </table>
-  </div>
 </div>
-      
 
-  
+    <div class="container mt-5" id="role-contain">
+        <div class="table-container">
+            <h2 class="hide-elements">User Roles</h2>
+            <table id="user-role-table" class="table table-striped table-bordered" style="width:100%">
+                <!-- Table content will be dynamically populated -->
+            </table>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js" defer></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 <link
   rel="stylesheet"
-  type="text/css"
-  href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"
 />
     <script src="~/js/Admin.js"></script>
    

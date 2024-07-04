@@ -58,7 +58,7 @@ function getFolloups() {
       console.log(cusid);
       if (cusid) {
         generatecustomerFollowUpData();
-        
+
         getCustomers();
       }
       // generateFields(result,p);
@@ -83,8 +83,30 @@ function createFollowupTable(data) {
       data: data,
       columns: [
         { data: 'CreatedByName', title: 'Created By' },
-   
-        { data: 'FollowUpDate', title: 'Follow-Up Date' },
+
+        // {
+        //   data: 'FollowUpDate', title: 'Follow-Up Date'
+                  
+
+        // },
+        {
+
+         
+          data: 'FollowUpDate',
+          title: 'FollowUpDate',
+          render: function (data, type, row) {
+                 console.log(data);
+            var followUpDate = new Date(data);
+            console.log(followUpDate);
+          
+            followUpDate.setDate(followUpDate.getDate() + 1);
+          
+            var formattedDate = followUpDate.toISOString().split('T')[0];
+            console.log(formattedDate);
+            return formattedDate
+  
+          },
+        },
         { data: 'FollowUpTime', title: 'Follow-Up Time' },
         { data: 'Note', title: 'Note' },
         { data: 'ReviewerName', title: 'Reviewer Name' },
@@ -134,22 +156,22 @@ function createFollowupTable(data) {
   function fetchFollowupDetails(fId) {
     var followUpDetails = fetchFollowupByfid(fId);
     console.log(followUpDetails, fId);
-  
+
     $('#old-note').val(followUpDetails.Note);
-  
+
     var followUpDate = new Date(followUpDetails.FollowUpDate);
     console.log(followUpDate);
-  
+
     followUpDate.setDate(followUpDate.getDate() + 1);
-  
+
     var formattedDate = followUpDate.toISOString().split('T')[0];
     console.log(formattedDate);
-  
- 
+
+
     $('#edit_date').val(formattedDate);
     $('#edit_time').val(followUpDetails.FollowUpTime);
   }
-  
+
 
   function fetchFollowupByfid(cid) {
     return followupData.find(function (customer) {
@@ -203,11 +225,11 @@ function AddFolloups() {
     FollowUpDate: date,
     time: time
   };
-  if (!date || !time ||!note) {
+  if (!date || !time || !note) {
     alert("fields cannot be empty.");
     return;
   }
- 
+
   const buttons = document.getElementById("saveFollowUpBtn")
 
 
@@ -223,9 +245,9 @@ function AddFolloups() {
     type: "POST",
     success: function (result) {
       console.log(result);
-     
-        getFolloups();
-      
+
+      getFolloups();
+
       // $('#EditFollowUpModal').modal('hide');
     },
     error: function (error) {
@@ -276,12 +298,12 @@ function EditFollowUps() {
     type: "POST",
     success: function (result) {
       console.log(result);
-     
 
 
 
-        getFolloups()
-    
+
+      getFolloups()
+
     },
     error: function (error) {
       console.log(error);

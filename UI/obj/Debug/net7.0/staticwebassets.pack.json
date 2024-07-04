@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\css\\model.css"
     },
     {
+      "Id": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\css\\sidebar.css",
+      "PackagePath": "staticwebassets\\css\\sidebar.css"
+    },
+    {
       "Id": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -55,6 +59,10 @@
     {
       "Id": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\js\\Login.js",
       "PackagePath": "staticwebassets\\js\\Login.js"
+    },
+    {
+      "Id": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\js\\Privelage.js",
+      "PackagePath": "staticwebassets\\js\\Privelage.js"
     },
     {
       "Id": "C:\\Users\\Pranav\\Documents\\Customer_Management\\ui\\wwwroot\\js\\Register.js",

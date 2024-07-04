@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
-using Db.Data;
+// using Db.Data;
+using api_application.Controllers;
 using System.Security.Claims;
 var builder = WebApplication.CreateBuilder(args);
 
