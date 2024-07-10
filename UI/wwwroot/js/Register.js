@@ -26,7 +26,7 @@ function AddUser() {
         type: "POST",
         success: function (result) {
             console.log(result);
-            if (result.success) {
+            if (result) {
                 alert("Registration successful");
                 window.location = `http://localhost:${port}/Account/Login`;
                
