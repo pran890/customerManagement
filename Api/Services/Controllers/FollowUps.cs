@@ -16,9 +16,8 @@ namespace api_application.Controllers
         [Route("AddFollowUps")]
         public string AddFollowUps(FollowUps cus)
         {
-            Console.WriteLine(cus.cId);
-            // Response responses = new Response();
-            // List<FollowUps> lstFollowUps = new List<FollowUps>();
+            // Console.WriteLine(cus.cId);
+            
             string result;
             DALF dal = new DALF();
             result = dal.AddFollowups(cus);
@@ -30,8 +29,7 @@ namespace api_application.Controllers
         [Route("GetFollowUps/{id}")]
         public string GetFollowUps(int id)
         {
-            // Response responses = new Response();
-            // List<FollowUps> lstFollowUps = new List<FollowUps>();
+         
             string result;
             DALF dal = new DALF();
             result = dal.GetFollowups(id);
@@ -43,9 +41,7 @@ namespace api_application.Controllers
         [Route("EditFollowUps")]
         public string EditFollowUps(FollowUps cus)
         {
-            Console.WriteLine(cus.cId);
-            // Response responses = new Response();
-            // List<FollowUps> lstFollowUps = new List<FollowUps>();
+           
             string result;
             DALF dal = new DALF();
             result = dal.EditFollowups(cus);

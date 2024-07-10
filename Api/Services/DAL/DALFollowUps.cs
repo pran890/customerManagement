@@ -36,7 +36,7 @@ namespace api_application_dal
                 }
             );
 
-            // GetAllMessages();
+         
             string finalJsonResult = JsonConvert.SerializeObject(dt, Formatting.Indented);
 
             return finalJsonResult;
@@ -62,7 +62,7 @@ namespace api_application_dal
 
             dt = espl.RunProcedure("usp_GetRelatedFollowupDetails", new { @UserId = uid });
 
-            // GetAllMessages();
+           
             string finalJsonResult = JsonConvert.SerializeObject(dt, Formatting.Indented);
 
             return finalJsonResult;
@@ -75,7 +75,7 @@ namespace api_application_dal
             TimeSpan followUpTime = TimeSpan.Parse(f.time);
           
       
-            // IterateOverProperties(f);
+            
             dt = espl.RunProcedure(
                 "usp_Edit_Followups",
                 new

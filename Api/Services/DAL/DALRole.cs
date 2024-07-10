@@ -18,7 +18,7 @@ namespace api_application_dal
 
           public int AddUserRole(UserRole u)
         {
-            Console.WriteLine("nb");
+            
               IterateOverProperties(u);
             DataTable dt = new DataTable();
 

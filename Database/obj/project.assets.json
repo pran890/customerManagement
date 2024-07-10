@@ -2473,11 +2473,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pranav\\Documents\\pr1\\customerManagement\\Database\\Database.csproj",
+      "projectUniqueName": "C:\\Users\\Pranav\\Documents\\temp1\\customerManagement\\Database\\Database.csproj",
       "projectName": "Database",
-      "projectPath": "C:\\Users\\Pranav\\Documents\\pr1\\customerManagement\\Database\\Database.csproj",
+      "projectPath": "C:\\Users\\Pranav\\Documents\\temp1\\customerManagement\\Database\\Database.csproj",
       "packagesPath": "C:\\Users\\Pranav\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pranav\\Documents\\pr1\\customerManagement\\Database\\obj\\",
+      "outputPath": "C:\\Users\\Pranav\\Documents\\temp1\\customerManagement\\Database\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Pranav\\AppData\\Roaming\\NuGet\\NuGet.Config"

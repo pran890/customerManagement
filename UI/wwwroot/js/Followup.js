@@ -1,7 +1,7 @@
 var cuId, fid;
 var followupData;
 document.addEventListener('DOMContentLoaded', function () {
-  console.log(hasSpecificPrivilege);
+  console.log(Addfollowups);
   getFolloups();
   const editDateInputs = document.getElementsByClassName('date');
   const editTimeInputs = document.getElementsByClassName('time');
@@ -84,11 +84,6 @@ function createFollowupTable(data) {
       columns: [
         { data: 'CreatedByName', title: 'Created By' },
 
-        // {
-        //   data: 'FollowUpDate', title: 'Follow-Up Date'
-                  
-
-        // },
         {
 
          
@@ -117,7 +112,7 @@ function createFollowupTable(data) {
           title: 'Actions',
           render: function (data, type, row) {
 
-            if (hasSpecificPrivilege) {
+            if (EditFollowups) {
 
               return '<i class="fa fa-pencil edit-icon" data-id="' + row.fid + '" style="cursor:pointer;"></i>';
             }
@@ -128,23 +123,13 @@ function createFollowupTable(data) {
           orderable: false
         }
       ],
-      // "order": [], // Remove default sorting
-      // "paging": true, // Enable pagination
-      // "lengthChange": false, // Disable page length change
-      // "searching": true, // Enable search box
-      // "info": true, 
-      // "autoWidth": true, 
-      // "responsive": true, 
-      // "language": {
-      //     "emptyTable": "No data available in table" // Customize empty table message
-      // }
+      
     });
   }
 
 
   $('#follow-up').on('click', '.edit-icon', function () {
-    // jQuery.noConflict();
-    // $('#EditFollowUpModal').modal('show');
+
     $('#EditFollowUpModal').modal();
     var followupId = $(this).data('id');
     fid = followupId
@@ -208,7 +193,7 @@ function fetchRecordsByCustomerId(customerId) {
 }
 
 
-function AddFolloups() {
+function AddFollowups() {
   // var customerData=getCustomerData();
   var uid = parseInt(localStorage.getItem("userId"));
 

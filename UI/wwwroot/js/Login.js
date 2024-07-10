@@ -25,6 +25,7 @@ function validateUser() {
         dataType: "json",
         type: "POST",
         success: function (result) {
+            console.log(result);
             if(result){
                 console.log(result);
                 localStorage.setItem("userId",result);

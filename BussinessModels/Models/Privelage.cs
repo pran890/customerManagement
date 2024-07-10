@@ -11,5 +11,8 @@ namespace CRUD.Models
         public int mr { get; set; }
          public int cr { get; set; }
         public int er { get; set; }
+        public string? pCode { get; set;}
+        public string? pDesc { get; set;}
+        
     } 
 }

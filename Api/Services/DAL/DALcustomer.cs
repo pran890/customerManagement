@@ -33,7 +33,7 @@ namespace api_application_dal
                 }
             );
 
-            // GetAllMessages();
+         
             string finalJsonResult = JsonConvert.SerializeObject(dt, Formatting.Indented);
 
             return finalJsonResult;
@@ -54,7 +54,7 @@ namespace api_application_dal
                 }
             );
 
-            // GetAllMessages();
+          
             string finalJsonResult = JsonConvert.SerializeObject(dt, Formatting.Indented);
 
             return finalJsonResult;
