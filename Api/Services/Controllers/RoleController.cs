@@ -12,27 +12,13 @@ namespace api_application.Controllers
     [ApiController]
     public class RoleController : ControllerBase
     {
-        // [HttpGet]
-        // [Route("GetRole/{id}")]
-        // public string GetRole(int id)
-        // {
-        //     // Response responses = new Response();
-        //     // List<Role> lstRole = new List<Role>();
-        //     string result;
-        //     DALU dal = new DALU();
-        //     result = dal.GetRole(id);
-
-        //     return result;
-        // }
-
+        
 
          [HttpPost]
         [Route("AddUserRole")]
         public int AddUserRole(UserRole r)
         {
-            // Response responses = new Response();
-            // List<Role> lstRole = new List<Role>();
-            Console.WriteLine("mn");
+            
             int result;
             DALR dal = new DALR();
             result = dal.AddUserRole(r);
@@ -45,8 +31,7 @@ namespace api_application.Controllers
         public string EditUserRoles(UserRole r)
         {
            
-            // Response responses = new Response();
-            // List<FollowUps> lstFollowUps = new List<FollowUps>();
+          
             string result;
             DALR dal = new DALR();
             result = dal.EditUserRoles(r);

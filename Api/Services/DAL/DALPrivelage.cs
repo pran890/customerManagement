@@ -18,7 +18,7 @@ namespace api_application_dal
 
         public int AddRolePrivelage(Privelage p)
         {
-            Console.WriteLine("nb");
+            
             DataTable dt = new DataTable();
 
             dt = espl.RunProcedure("usp_Add_Role_Privelage", new { p.pId, p.rId });
@@ -54,7 +54,7 @@ namespace api_application_dal
 
         public int EditRolePrivelage(Privelage p)
         {
-            Console.WriteLine("nb");
+           
             IterateOverProperties(p);
             DataTable dt = new DataTable();
 
@@ -67,6 +67,28 @@ namespace api_application_dal
                     p.mr,
                     p.cr,
                     p.er
+                }
+            );
+
+            string finalJsonResult = JsonConvert.SerializeObject(dt, Formatting.Indented);
+
+            return 1;
+        }
+
+
+         public int AddNewPrivelage(Privelage p)
+        {
+           
+            IterateOverProperties(p);
+            DataTable dt = new DataTable();
+
+            dt = espl.RunProcedure(
+                "usp_Add_Privelage",
+                new
+                {
+                    p.pCode,
+                    p.pDesc
+                   
                 }
             );
 

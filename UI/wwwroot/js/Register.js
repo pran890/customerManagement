@@ -47,24 +47,3 @@ function clearForm() {
     // $("#txtConfirmPassword").val("");
 }
 
-// function checkEmail() {
-//     var email = $("#txtEmail").val();
-//     console.log(email);
-//     var url = `${ur}User/ValidateUser/` + email;
-//     $.ajax({
-//         url: url,
-//         contentType: "application/json; charset=utf-8",
-//         dataType: "json",
-//         type: "GET",
-//         success: function (result) {
-//             console.log(result);
-//             if (result.id != 0) {
-//                 alert("Duplicate Email");
-//                 $("#txtEmail").val("");
-//             }
-//         },
-//         error: function (msg) {
-//             alert("Error validating email: " + msg.responseText);
-//         },
-//     });
-// }

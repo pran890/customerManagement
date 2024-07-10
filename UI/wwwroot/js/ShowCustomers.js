@@ -52,12 +52,18 @@ function createTable(data) {
         { data: 'CustomerName', title: 'Customer Name' },
         {data: 'dueCount', title: 'DueCount'},
         {data: 'ScheduledCount', title: 'ScheduledCount'},
-        
+       
         {
           data: null,
           title: 'Actions',
           render: function (data, type, row) {
-            return '<i class="fa fa-pencil edit-icon" data-id="' + row.cid + '" style="cursor:pointer;"></i>';
+            if (EditCustomer) {
+
+              return '<i class="fa fa-pencil edit-icon" data-id="' + row.cid + '" style="cursor:pointer;"></i>';
+            }
+            else{
+              return '';
+            }
           },
           orderable: false
         }
@@ -101,20 +107,9 @@ function createTable(data) {
   console.log("kl");
 
   $('#addFollowUpBtn').on('click', function () {
-    // jQuery.noConflict();
     $('#addFollowUpModal').modal();
-    // $('#addFollowUpModal').modal('show');
   });
-  // var oTable =cTable.DataTable({ 
-  //   rowCallback: function(row, data, index){
-  //     if(data[3]> 11.7){
-  //       $(row).find('td:eq(3)').css('color', 'red');
-  //     }
-  //     if(data[2].toUpperCase() == 'EE'){
-  //       $(row).find('td:eq(2)').css('color', 'blue');
-  //     }
-  //   }
-  // });
+  
 }
 function fetchCustomerByCid(cid) {
   return customerData.find(function (customer) {

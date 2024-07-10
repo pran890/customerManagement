@@ -1,8 +1,8 @@
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
-using CRUD.Models;
 using api_application_dal;
+using CRUD.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 
@@ -12,15 +12,10 @@ namespace api_application.Controllers
     [ApiController]
     public class PrivelageController : ControllerBase
     {
-        
-
-          [HttpGet]
+        [HttpGet]
         [Route("GetPrivelage")]
         public string GetPrivelage()
         {
-           
-            // Response responses = new Response();
-            // List<FollowUps> lstFollowUps = new List<FollowUps>();
             string result;
             DALP dal = new DALP();
             result = dal.GetPrivelage();
@@ -28,34 +23,38 @@ namespace api_application.Controllers
             return result;
         }
 
-   [HttpPost]
+        [HttpPost]
         [Route("AddRolePrivelage")]
-        public int  AddRolePrivelage(Privelage r)
+        public int AddRolePrivelage(Privelage r)
         {
-            // Response responses = new Response();
-            // List<Role> lstRole = new List<Role>();
-            Console.WriteLine("mn");
             int result;
             DALP dal = new DALP();
-            result = dal. AddRolePrivelage(r);
+            result = dal.AddRolePrivelage(r);
 
             return 1;
         }
 
-        
         [HttpPost]
         [Route("EditRolePrivelage")]
-        public int  EditRolePrivelage(Privelage r)
+        public int EditRolePrivelage(Privelage r)
         {
-            // Response responses = new Response();
-            // List<Role> lstRole = new List<Role>();
-            Console.WriteLine("mn");
             int result;
             DALP dal = new DALP();
-            result = dal. EditRolePrivelage(r);
+            result = dal.EditRolePrivelage(r);
 
             return 1;
         }
-         
+
+         [HttpPost]
+        [Route("AddNewPrivelage")]
+        public int AddNewPrivelage(Privelage r)
+        { 
+            Console.WriteLine("mnk");
+            int result;
+            DALP dal = new DALP();
+            result = dal.AddNewPrivelage(r);
+
+            return 1;
+        }
     }
 }

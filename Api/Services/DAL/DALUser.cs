@@ -31,7 +31,7 @@ namespace api_application_dal
 
         public int AddUser(User u)
         {
-            Console.WriteLine("nb");
+            
             DataTable dt = new DataTable();
 
             dt = espl.RunProcedure(
@@ -50,7 +50,7 @@ namespace api_application_dal
         }
           public int AddUserRole(UserRole u)
         {
-            Console.WriteLine("nb");
+           
             DataTable dt = new DataTable();
 
             dt = espl.RunProcedure(

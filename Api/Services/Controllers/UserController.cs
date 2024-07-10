@@ -1,8 +1,8 @@
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
-using CRUD.Models;
 using api_application_dal;
+using CRUD.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 
@@ -16,8 +16,6 @@ namespace api_application.Controllers
         [Route("GetUser/{id}")]
         public string GetUser(int id)
         {
-            // Response responses = new Response();
-            // List<User> lstUser = new List<User>();
             string result;
             DALU dal = new DALU();
             result = dal.GetUser(id);
@@ -25,38 +23,32 @@ namespace api_application.Controllers
             return result;
         }
 
-
-         [HttpPost]
+        [HttpPost]
         [Route("AddUser")]
         public int AddUser(User u)
         {
-            // Response responses = new Response();
-            // List<User> lstUser = new List<User>();
-            Console.WriteLine("mn");
             int result;
             DALU dal = new DALU();
             result = dal.AddUser(u);
 
             return 1;
         }
-          [HttpPost]
+
+        [HttpPost]
         [Route("AddUserRole")]
         public int AddUserRole(UserRole u)
         {
-            // Response responses = new Response();
-            // List<User> lstUser = new List<User>();
-            Console.WriteLine("mn");
             int result;
             DALU dal = new DALU();
             result = dal.AddUserRole(u);
 
             return 1;
         }
+
         [HttpGet]
         [Route("GetAllUser")]
         public string GetAllUser()
         {
-         
             string result;
             DALU dal = new DALU();
             result = dal.GetAllUser();

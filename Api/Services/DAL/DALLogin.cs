@@ -34,7 +34,7 @@ namespace api_application.Controllers
                 };
             }
 
-            Console.WriteLine("hello");
+         
             return null;
         }
 

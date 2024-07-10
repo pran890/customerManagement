@@ -16,8 +16,7 @@ namespace api_application.Controllers
         [Route("AddCustomer")]
         public string AddCustomer(Customer cus)
         {
-            // Response responses = new Response();
-            // List<Customer> lstCustomer = new List<Customer>();
+            
             string result;
             DALC dal = new DALC();
             result = dal.AddCustomer(cus);
@@ -29,8 +28,7 @@ namespace api_application.Controllers
         [Route("GetCustomer/{id}")]
         public string GetCustomer(int id)
         {
-            // Response responses = new Response();
-            // List<Customer> lstCustomer = new List<Customer>();
+            
             string result;
             DALC dal = new DALC();
             result = dal.GetCustomer(id);

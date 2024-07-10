@@ -56,14 +56,13 @@ function showCoordinatorAndExecutive() {
    
         coordinatorField.style.display = "block";
    
-        // executiveField.style.display = "block";
+     
     
 }
 function generate() {
     var managerValue = document.getElementById("coordinator").value;
     console.log(managerValue);
     getUsers(parseInt(managerValue),3)
-    // var coordinatorField = document.getElementById("coordinator");
     var executiveField = document.getElementById("executiveField");
     
         executiveField.style.display = "block";
@@ -110,17 +109,14 @@ function generateFields(data,p) {
         if (item.RoleName === "Manager" && (!p)) {
             console.log("lk");
             var select = document.getElementById("manager");
-            // select.innerHTML = '<option value="">Select a ' + item.RoleName.toLowerCase() + '</option>';
             select.appendChild(new Option(item. Username, item.UserId));
         }
         else  if (item.RoleName === "Coordinator" && p==1) {
             var select = document.getElementById("coordinator");
-            // select.innerHTML = '<option value="">Select a ' + item.RoleName.toLowerCase() + '</option>';
             select.appendChild(new Option(item. Username, item.UserId));
         }
         else  if (item.RoleName === "Executive" && p>2) {
             var select = document.getElementById("executive");
-            // select.innerHTML = '<option value="">Select a ' + item.RoleName.toLowerCase() + '</option>';
             select.appendChild(new Option(item. Username, item.UserId));
         }
     });

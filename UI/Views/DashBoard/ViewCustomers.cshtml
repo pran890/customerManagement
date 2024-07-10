@@ -5,8 +5,11 @@
 @{
   Layout = "_DashboardLayout";
 var isAdmin = User.HasClaim(ClaimTypes.Role, "Admin");
-bool hasSpecificPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Value == "AddFollowup");
+bool hasAddFollowupsPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Value == "AddFollowup");
+bool hasEditCustomerPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Value == "EditCustomers");
+bool hasEditFollowupsPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Value == "EditFollowups");
 
+	
 }
 <div class="custom-loader"></div>
 <div class="elements">
@@ -50,8 +53,11 @@ bool hasSpecificPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Valu
  <script>
    
         var isAdmin = @isAdmin.ToString().ToLower(); // converts true/false to javascript boolean
-    var hasSpecificPrivilege = @hasSpecificPrivilege.ToString().ToLower();
-        // Add more properties for other ViewBag values as needed
+    var Addfollowups= @hasAddFollowupsPrivilege.ToString().ToLower();
+         var EditCustomer = @hasEditCustomerPrivilege.ToString().ToLower();
+
+    var EditFollowups = @hasEditFollowupsPrivilege.ToString().ToLower();
+
     
     </script>
 <script src="~/js/ShowCustomers.js"></script>
