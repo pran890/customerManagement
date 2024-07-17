@@ -29,7 +29,9 @@ namespace api_application_dal
                     cus.Name,
                     cus.ManagerId,
                     cus.CoordinatorId,
-                    cus.ExecutiveId
+                    cus.ExecutiveId,
+                    cus.Description,
+                    cus.Phoneno
                 }
             );
 
