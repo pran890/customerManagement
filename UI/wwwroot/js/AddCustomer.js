@@ -19,7 +19,8 @@ function AddCustomer() {
   var email = document.getElementById("email").value;
   var executive = document.getElementById("Executive").value;
   var coordinator = document.getElementById("Coordinator").value;
-
+  var description = document.getElementById("description").value;
+  var phoneno = document.getElementById("phoneno").value;
 
 var customer={
     Name: name,
@@ -27,6 +28,8 @@ var customer={
     ManagerId: parseInt(manager),
     ExecutiveId: parseInt(executive),
     CoordinatorId: parseInt(coordinator),
+    Description:description,
+    Phoneno:phoneno
   };
   $.ajax({
     url: `${apiUrl}Customer/AddCustomer/` ,
