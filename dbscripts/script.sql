@@ -1080,3 +1080,11 @@ USE [master]
 GO
 ALTER DATABASE [customermanagement] SET  READ_WRITE 
 GO
+
+
+// Sample data for privelages
+PrivilegeId	PrivilegeCode	Description
+2	Settings	Can edit users
+3	AddFollowup	can add followup
+6	EditCustomers	Can edit customers and details.
+7	EditFollowups	Can edit followup and details.
