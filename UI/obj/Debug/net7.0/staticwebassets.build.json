@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "QqXn7qTZgOdq2VZys+ZJdtq2d23WAyrPqEJDMRSrb7U=",
+  "Hash": "9thPufthoTp9BTCCmlBmAb5NcTG3z29mPvUCoxbi+cs=",
   "Source": "Customer Management",
   "BasePath": "_content/Customer Management",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\Pranav\\Documents\\temp1\\customerManagement\\api\\Api.csproj",
+      "Identity": "C:\\Users\\Pranav\\Documents\\temp1\\customerManagement\\Api\\Api.csproj",
       "Version": 2,
       "Source": "Api",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",

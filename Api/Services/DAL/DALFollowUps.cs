@@ -18,7 +18,7 @@ namespace api_application_dal
 
         public string AddFollowups(FollowUps f)
         {
-            Console.WriteLine(f.cId);
+            // Console.WriteLine(f.cId);
             DataTable dt = new DataTable();
             DateTime followUpDate = DateTime.Parse(f.FollowUpDate);
             TimeSpan followUpTime = TimeSpan.Parse(f.time);
@@ -69,7 +69,7 @@ namespace api_application_dal
         }
          public string EditFollowups(FollowUps f)
         {
-            Console.WriteLine(f.cId);
+            // Console.WriteLine(f.cId);
             DataTable dt = new DataTable();
             DateTime followUpDate = DateTime.Parse(f.FollowUpDate);
             TimeSpan followUpTime = TimeSpan.Parse(f.time);

@@ -15,10 +15,10 @@ var apiUrl = `http://localhost:${port}/api/`;
 function AddCustomer() {
  
   var name = document.getElementById("name").value;
-  var manager = document.getElementById("manager").value;
+  var manager = document.getElementById("Manager").value;
   var email = document.getElementById("email").value;
-  var executive = document.getElementById("executive").value;
-  var coordinator = document.getElementById("coordinator").value;
+  var executive = document.getElementById("Executive").value;
+  var coordinator = document.getElementById("Coordinator").value;
 
 
 var customer={
@@ -69,42 +69,13 @@ function getUsers(id,p) {
   });
 }
 
-function generateFields(data,p) {
+function generateFields(data) {
    
-    if(p==1){
-        var select = document.getElementById("executive");
-        removeAllOptions(select)
-     }
+    
    data.forEach(function(item) {
-        if (item.RoleName === "Manager" &&!p ) {
-            var select = document.getElementById("manager");
-            // select.innerHTML = '<option value="">Select a ' + item.RoleName.toLowerCase() + '</option>';
-            select.appendChild(new Option(item.Username, item.UserId));
-        }
-        else  if (item.RoleName === "Coordinator" &&!p ) {
-            var select = document.getElementById("coordinator");
-            // select.innerHTML = '<option value="">Select a ' + item.RoleName.toLowerCase() + '</option>';
-            select.appendChild(new Option(item.Username, item.UserId));
-        }
-        else  if (item.RoleName === "Executive" ) {
-            var select = document.getElementById("executive");
-            // select.innerHTML = '<option value="">Select a ' + item.RoleName.toLowerCase() + '</option>';
-            select.appendChild(new Option(item.Username, item.UserId));
-        }
+       
+
+        var select = document.getElementById(item.RoleName);
+        select.appendChild(new Option(item.Username, item.UserId));
     });
-}
-function generate() {
-    var managerValue = document.getElementById("coordinator").value;
-    console.log(managerValue);
-    getUsers(parseInt(managerValue),1)
-    // var coordinatorField = document.getElementById("coordinator");
-    var executiveField = document.getElementById("executiveField");
-    
-        executiveField.style.display = "block";
-    
-}
-function removeAllOptions(selectElement) {
-    while (selectElement.options.length > 1) {
-        selectElement.remove(1);
-    }
 }

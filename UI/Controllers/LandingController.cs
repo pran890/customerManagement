@@ -27,19 +27,20 @@ namespace Mangement.Controllers
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine(login.Email);
+                // Console.WriteLine(login.Email);
                 var usr = _userRepository.GetUser(login.Email, login.Password);
 
                 if (usr != null)
                 {
                     var privileges = _userRepository.GetPrivilegesByRoleIdAsync(usr.Id);
-
+                 
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, usr.Name),
                         new Claim(ClaimTypes.Email, usr.Email),
                         new Claim(ClaimTypes.Role, usr.Role),
-                        new Claim(ClaimTypes.NameIdentifier, usr.Id.ToString())
+                        new Claim(ClaimTypes.NameIdentifier, usr.Id.ToString()),
+                          new Claim("FirstLogin", usr.FirstLogin.ToString())
                     };
                     claims.AddRange(
                         privileges.Select(privilege => new Claim("Privilege", privilege))

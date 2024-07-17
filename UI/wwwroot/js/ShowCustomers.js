@@ -8,6 +8,33 @@ var apiUrl = `http://localhost:${port}/api/`;
 document.addEventListener("DOMContentLoaded", function () {
   getCustomers();
 
+  if(!isFirstLogin) introToWebsite();
+  const fullScreenToggle = document.getElementById('fullScreenCusToggle');
+  const followupTableContainer = document.getElementById('table-container');
+  const modalDialog = document.querySelector('.modal-dialog');
+
+  let isFullScreen = false;
+  let originalModelClass = modalDialog.className;
+
+  fullScreenToggle.addEventListener('click', function () {
+    if (!isFullScreen) {
+
+      fullScreenToggle.classList.add('exit-screen-customer');
+      modalDialog.classList.add('modal-full-screen-customer');
+      followupTableContainer.classList.add('full-screen-customer');
+      fullScreenToggle.textContent = 'Exit Full Screen';
+    } else {
+
+      fullScreenToggle.classList.remove('exit-screen-customer');
+      modalDialog.className = originalModelClass;
+      followupTableContainer.classList.remove('full-screen-customer');
+      fullScreenToggle.textContent = 'Toggle Full Screen';
+
+    }
+    isFullScreen = !isFullScreen;
+  });
+ 
+
 });
 
 function getCustomers() {
@@ -80,7 +107,7 @@ function createTable(data) {
 
   $('#customers-table').on('click', '.edit-icon', function () {
     var customerId = $(this).data('id');
-    console.log(customerId);
+    // console.log(customerId);
     localStorage.setItem("cusid", customerId);
     generatecustomerFollowUpData();
     fetchCustomerDetails(customerId);
@@ -90,7 +117,7 @@ function createTable(data) {
 
     cusId = cId;
     var customerDetails = fetchCustomerByCid(cId);
-    console.log(customerDetails, cId);
+
     $('#customerName').val(customerDetails.
       CustomerName
     );
@@ -99,12 +126,10 @@ function createTable(data) {
     // $('#domain').val(customerDetails.domain);
     $('#phoneNo').val(customerDetails.phoneNo);
 
-    // Show modal
-    // jQuery.noConflict();
+   
     $('#editModal').modal();
-    // $('#editModal').modal('show');
   }
-  console.log("kl");
+
 
   $('#addFollowUpBtn').on('click', function () {
     $('#addFollowUpModal').modal();
@@ -125,4 +150,25 @@ function getCustomerData(params) {
   });
 
 
+}
+
+function  introToWebsite(params) {
+  const driver = window.driver.js.driver;
+
+
+  
+
+  const driverObj = driver({
+    popoverClass: 'driverjs-theme',
+    showProgress: true,
+    steps: [
+      { element: '#fullScreenCusToggle', popover: { title: 'Full Screen', description: 'Click to enter the full screen' } },
+      { element: '.edit-icon', popover: { title: 'Edit Customer', description: 'Click to edit the customer details' } },
+      { element: '.view-customers', popover: { title: 'View Customers', description: 'Click to view the customer details' } },
+      { element: '.add-customers', popover: { title: 'Add Customers', description: 'Click to add the new customer' } },
+    ]
+  });
+  
+  driverObj.drive();
+  
 }

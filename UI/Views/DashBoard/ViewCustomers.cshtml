@@ -5,6 +5,8 @@
 @{
   Layout = "_DashboardLayout";
 var isAdmin = User.HasClaim(ClaimTypes.Role, "Admin");
+var firstLoginClaim = User.FindFirst("FirstLogin");
+    string firstLoginValue = firstLoginClaim?.Value;
 bool hasAddFollowupsPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Value == "AddFollowup");
 bool hasEditCustomerPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Value == "EditCustomers");
 bool hasEditFollowupsPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Value == "EditFollowups");
@@ -13,6 +15,11 @@ bool hasEditFollowupsPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c
 }
 <div class="custom-loader"></div>
 <div class="elements">
+<div class="d-flex justify-content-between align-items-center mb-2">
+
+                        <button type="button" class="btn btn-primary btn-sm " id="fullScreenCusToggle">Toggle Full
+                            Screen</button>
+                    </div>
   <div id="table-container">
     <h2 class="hide-elements">Customers</h2>
 
@@ -58,8 +65,14 @@ bool hasEditFollowupsPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c
 
     var EditFollowups = @hasEditFollowupsPrivilege.ToString().ToLower();
 
+    var isFirstLogin=@firstLoginValue;
     
     </script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+
+
 <script src="~/js/ShowCustomers.js"></script>
 <script src="~/js/Followup.js"></script>
 }

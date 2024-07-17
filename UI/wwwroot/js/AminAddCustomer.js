@@ -4,10 +4,10 @@ var port = localStorage.getItem("port");
 var apiUrl = `http://localhost:${port}/api/`;
 function AddCustomer() {
   var name = document.getElementById("name").value;
-  var manager = document.getElementById("manager").value;
+  var manager = document.getElementById("Manager").value;
   var email = document.getElementById("email").value;
-  var executive = document.getElementById("executive").value;
-  var coordinator = document.getElementById("coordinator").value;
+  var executive = document.getElementById("Executive").value;
+  var coordinator = document.getElementById("Coordinator").value;
 
 
 var customer={
@@ -43,9 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 function showCoordinatorAndExecutive() {
-    var managerValue = document.getElementById("manager").value;
+    var managerValue = document.getElementById("Manager").value;
     console.log(managerValue);
-    getUsers(parseInt(managerValue),1)
+    getUsers(parseInt(managerValue),'Coordinator')
     var coordinatorField = document.getElementById("coordinatorField");
     var executiveField = document.getElementById("executiveField");
 
@@ -60,19 +60,20 @@ function showCoordinatorAndExecutive() {
     
 }
 function generate() {
-    var managerValue = document.getElementById("coordinator").value;
+    var managerValue = document.getElementById("Coordinator").value;
     console.log(managerValue);
-    getUsers(parseInt(managerValue),3)
+    getUsers(parseInt(managerValue),'Executive')
     var executiveField = document.getElementById("executiveField");
     
         executiveField.style.display = "block";
     
 }
 
-function getUsers(id,p) {
+function getUsers(id,role) {
+  if(!role)role='Manager';
   var uid = parseInt(localStorage.getItem("userId"));
 
-  console.log(p);
+
   if(id) uid=id;
 
   $.ajax({
@@ -82,7 +83,7 @@ function getUsers(id,p) {
     type: "GET",
     success: function (result) {
       console.log(result);
-      generateFields(result,p);
+      generateFields(result,role);
     },
     error: function (error) {
       console.log(error);
@@ -91,34 +92,18 @@ function getUsers(id,p) {
   });
 }
 
-function generateFields(data,p) {
+function generateFields(data,role) {
    
-     console.log(data,p);
-     console.log(p);
-     if(!p){
-        var select = document.getElementById("manager");
+     console.log(data,role);
+ 
+        var select = document.getElementById(role);
         removeAllOptions(select)
-     }else if(p==1){
-        var select = document.getElementById("coordinator");
-        removeAllOptions(select)
-     }else if(p==3){
-        var select = document.getElementById("executive");
-        removeAllOptions(select)
-     }
+    
    data.forEach(function(item) {
-        if (item.RoleName === "Manager" && (!p)) {
-            console.log("lk");
-            var select = document.getElementById("manager");
-            select.appendChild(new Option(item. Username, item.UserId));
-        }
-        else  if (item.RoleName === "Coordinator" && p==1) {
-            var select = document.getElementById("coordinator");
-            select.appendChild(new Option(item. Username, item.UserId));
-        }
-        else  if (item.RoleName === "Executive" && p>2) {
-            var select = document.getElementById("executive");
-            select.appendChild(new Option(item. Username, item.UserId));
-        }
+        if (item.RoleName === role ) {
+          var select = document.getElementById(item.RoleName);
+          select.appendChild(new Option(item. Username, item.UserId));
+      }
     });
 }
 function removeAllOptions(selectElement) {
