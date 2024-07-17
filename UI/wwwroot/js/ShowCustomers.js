@@ -7,8 +7,9 @@ var port = localStorage.getItem("port");
 var apiUrl = `http://localhost:${port}/api/`;
 document.addEventListener("DOMContentLoaded", function () {
   getCustomers();
-
-  if(!isFirstLogin) introToWebsite();
+  var introFlag= localStorage.getItem("firstLogin");
+  console.log(isFirstLogin,introFlag);
+  if(!isFirstLogin && !parseInt(introFlag)  ) introToWebsite();
   const fullScreenToggle = document.getElementById('fullScreenCusToggle');
   const followupTableContainer = document.getElementById('table-container');
   const modalDialog = document.querySelector('.modal-dialog');
@@ -153,6 +154,8 @@ function getCustomerData(params) {
 }
 
 function  introToWebsite(params) {
+  localStorage.setItem("firstLogin",1);
+  isFirstLogin=1;
   const driver = window.driver.js.driver;
 
 
