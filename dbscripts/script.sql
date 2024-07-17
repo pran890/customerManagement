@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [customermanagement]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  Database [customermanagement]    Script Date: 17-07-2024 21:15:57 ******/
 CREATE DATABASE [customermanagement]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,7 +80,7 @@ ALTER DATABASE [customermanagement] SET QUERY_STORE = OFF
 GO
 USE [customermanagement]
 GO
-/****** Object:  Table [dbo].[Customers]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  Table [dbo].[Customers]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +108,7 @@ UNIQUE NONCLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FollowUp]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  Table [dbo].[FollowUp]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -127,7 +127,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FollowUpDetail]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  Table [dbo].[FollowUpDetail]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -150,7 +150,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Privileges]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  Table [dbo].[Privileges]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -165,7 +165,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RolePrivileges]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  Table [dbo].[RolePrivileges]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -180,7 +180,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -194,7 +194,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[userRelation]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  Table [dbo].[userRelation]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -204,7 +204,7 @@ CREATE TABLE [dbo].[userRelation](
 	[parentid] [int] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserRoles]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  Table [dbo].[UserRoles]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -219,7 +219,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -317,7 +317,7 @@ ALTER TABLE [dbo].[UserRoles]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[Users] ([UserId])
 ON DELETE CASCADE
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Add_Privelage]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Add_Privelage]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -338,7 +338,7 @@ BEGIN
     
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Add_Role_Privelage]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Add_Role_Privelage]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -362,7 +362,7 @@ BEGIN
     END
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Add_User_Role]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Add_User_Role]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -405,7 +405,7 @@ END;
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Edit_Followups]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Edit_Followups]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -448,7 +448,7 @@ BEGIN
     COMMIT TRANSACTION
 END
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Edit_role_privelage]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Edit_role_privelage]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -500,7 +500,7 @@ BEGIN
     DEALLOCATE RoleCursor
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Edit_user_role]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Edit_user_role]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -523,7 +523,7 @@ BEGIN
     END
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_get_Privelage]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_get_Privelage]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -555,7 +555,7 @@ BEGIN
         p.PrivilegeId, p.PrivilegeCode, rp.Roles,p.Description;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Get_User_details]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Get_User_details]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -572,7 +572,7 @@ BEGIN
     
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetAll_User]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetAll_User]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -598,7 +598,7 @@ BEGIN
 
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetPrivilegesByRoleId]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetPrivilegesByRoleId]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -622,7 +622,7 @@ WHERE u.UserId = @Id;
     
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetRelatedCustomersDetails]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetRelatedCustomersDetails]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -722,7 +722,7 @@ BEGIN
     END
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetRelatedFollowupDetails]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetRelatedFollowupDetails]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -805,7 +805,7 @@ BEGIN
     END
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetRelatedUsers]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetRelatedUsers]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -889,7 +889,7 @@ BEGIN
     );
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetRelatedUsersa]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetRelatedUsersa]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -976,7 +976,7 @@ BEGIN
     );
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_getUsers]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_getUsers]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -994,7 +994,7 @@ select u.username,u.userid ,r.rolename from users u inner join Roles r on r.Role
     
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Insert_Customer]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Insert_Customer]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1004,19 +1004,21 @@ CREATE PROCEDURE [dbo].[usp_Insert_Customer]
     @Name VARCHAR(50),
     @ManagerId INT,
     @CoordinatorId INT,
-    @ExecutiveId INT
+    @ExecutiveId INT,
+	@Description varchar(50),
+	@Phoneno varchar(50)
 AS
 BEGIN
     SET NOCOUNT ON;
 
     -- Insert statement
-    INSERT INTO Customers (Email, Name, ManagerId, CoordinatorId, ExecutiveId)
-    VALUES (@Email, @Name, @ManagerId, @CoordinatorId, @ExecutiveId);
+    INSERT INTO Customers (Email, Name, ManagerId, CoordinatorId, ExecutiveId,Description,Phoneno)
+    VALUES (@Email, @Name, @ManagerId, @CoordinatorId, @ExecutiveId,@Description,@Phoneno);
 
     
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Insert_Followups]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Insert_Followups]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1056,7 +1058,7 @@ BEGIN
     COMMIT TRANSACTION
 END
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Insert_User]    Script Date: 17-07-2024 18:20:59 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Insert_User]    Script Date: 17-07-2024 21:15:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1080,11 +1082,3 @@ USE [master]
 GO
 ALTER DATABASE [customermanagement] SET  READ_WRITE 
 GO
-
-
-// Sample data for privelages
-PrivilegeId	PrivilegeCode	Description
-2	Settings	Can edit users
-3	AddFollowup	can add followup
-6	EditCustomers	Can edit customers and details.
-7	EditFollowups	Can edit followup and details.
