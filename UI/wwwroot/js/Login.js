@@ -29,6 +29,7 @@ function validateUser() {
             if(result){
                 console.log(result);
                 localStorage.setItem("userId",result);
+                localStorage.setItem("firstLogin",0);
                 alert("Login successful");
                 window.location.replace("http://localhost:5025/DashBoard/ViewCustomers");
 
