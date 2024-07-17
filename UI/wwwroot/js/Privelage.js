@@ -1,6 +1,6 @@
 var url = new URL(window.location.href);
 localStorage.setItem("port", url.port);
-var privelageData,privelageId;
+var privelageData, privelageId;
 var port = localStorage.getItem("port");
 var apiUrl = `http://localhost:${port}/api/`;
 document.addEventListener("DOMContentLoaded", function () {
@@ -39,10 +39,10 @@ function createPrivelageRoleTable(data) {
       data: data,
 
       columns: [
-        { data: "PrivilegeCode", title: "PrivilegeCode",  },
+        { data: "PrivilegeCode", title: "PrivilegeCode", },
 
-        { data: "Roles", title: "RoleNames"},
-        { data: "Description", title: "Description"},
+        { data: "Roles", title: "RoleNames" },
+        { data: "Description", title: "Description" },
         {
           data: null,
           title: "Actions",
@@ -54,7 +54,7 @@ function createPrivelageRoleTable(data) {
             );
           },
           orderable: false,
-          width: "20%" 
+          width: "20%"
         },
       ],
     });
@@ -63,7 +63,7 @@ function createPrivelageRoleTable(data) {
   $("#privelage-role-table").on("click", ".edit-icon", function () {
     var privelageId = $(this).data("id");
     console.log(privelageId);
-  
+
     fetchprivelageDetails(privelageId);
   });
 
@@ -73,16 +73,14 @@ function fetchprivelageDetails(pId) {
   // cusId = cId;
   privelageId = pId;
   var privelageDetails = fetchprivelageBypid(pId);
-  console.log(privelageDetails, pId);
-  // console.log(privelageDetails.Roles);
 
 
   $('input[type="checkbox"]').prop('checked', false);
 
-  var roles = privelageDetails.Roles.split(", "); 
+  var roles = privelageDetails.Roles.split(", ");
 
   roles.forEach(function (role) {
-    console.log(role);
+
 
     var checkbox = $("#" + role);
 
@@ -99,75 +97,75 @@ function fetchprivelageBypid(pid) {
 }
 
 function EditRolePrivelage() {
-   
-    var mStatus = document.getElementById('Manager').checked ? 1:0;
-    var aStatus = document.getElementById('Admin').checked ? 1:0;
-    var cStatus = document.getElementById('Coordinator').checked ? 1:0;
-    var eStatus = document.getElementById('Executive').checked ? 1:0;
-    console.log(privelageId);
-    var privelage={
-        pid:privelageId,
-        mr:mStatus,
-        er:eStatus,
-        cr:cStatus,
-        ar:aStatus
-    }
 
-    console.log(privelage);
-    $.ajax({
-        url: `${apiUrl}Privelage/EditRolePrivelage/`,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        data: JSON.stringify(privelage),
-        type: "POST",
-        success: function (result) {
-          console.log(result);
-          alert("succes");
-         
-          getPrivelage();
-        },
-        error: function (error) {
-          console.log(error);
-          alert("Error checking email. Please try again.");
-        },
-      });
-
-
-
+  var mStatus = document.getElementById('Manager').checked ? 1 : 0;
+  var aStatus = document.getElementById('Admin').checked ? 1 : 0;
+  var cStatus = document.getElementById('Coordinator').checked ? 1 : 0;
+  var eStatus = document.getElementById('Executive').checked ? 1 : 0;
+  console.log(privelageId);
+  var privelage = {
+    pid: privelageId,
+    mr: mStatus,
+    er: eStatus,
+    cr: cStatus,
+    ar: aStatus
   }
 
-  function addNewPrivelage() {
+  console.log(privelage);
+  $.ajax({
+    url: `${apiUrl}Privelage/EditRolePrivelage/`,
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    data: JSON.stringify(privelage),
+    type: "POST",
+    success: function (result) {
+      console.log(result);
+      alert("succes");
 
-    $('#addPrivelageModal').modal();
-   
+      getPrivelage();
+    },
+    error: function (error) {
+      console.log(error);
+      alert("Error . Please try again.");
+    },
+  });
 
-  
+
+
+}
+
+function addNewPrivelage() {
+
+  $('#addPrivelageModal').modal();
+
+
+
+}
+
+function AddNewPrivelage(params) {
+  var pCode = document.getElementById('privelageName').value;
+  var pDesc = document.getElementById('description').value;
+
+  var privelage = {
+    pCode: pCode,
+    pDesc: pDesc,
   }
 
-  function AddNewPrivelage(params) {
-    var pCode = document.getElementById('privelageName').value;
-    var pDesc= document.getElementById('description').value;
-     
-    var privelage={
-      pCode:pCode,
-     pDesc:pDesc,
-  }
 
-
-    $.ajax({
-      url: `${apiUrl}Privelage/AddNewPrivelage/`,
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      data: JSON.stringify(privelage),
-      type: "POST",
-      success: function (result) {
-        console.log(result);
-        alert("succes");
-        location.reload();
-      },
-      error: function (error) {
-        console.log(error);
-        alert("Error checking email. Please try again.");
-      },
-    });
-  }
+  $.ajax({
+    url: `${apiUrl}Privelage/AddNewPrivelage/`,
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    data: JSON.stringify(privelage),
+    type: "POST",
+    success: function (result) {
+      console.log(result);
+      alert("succes");
+      location.reload();
+    },
+    error: function (error) {
+      console.log(error);
+      alert("Error . Please try again.");
+    },
+  });
+}

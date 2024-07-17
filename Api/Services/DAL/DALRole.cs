@@ -26,7 +26,7 @@ namespace api_application_dal
                 "usp_Add_User_Role",
                 new
                 {
-                    u.Id,u.rId,u.cId,u.mId
+                    u.Id,u.roleName,u.cId,u.mId
                 }
             );
 

@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         }
       });
+
+     
     });
 
     Array.from(editTimeInputs).forEach(input => {
@@ -39,6 +41,30 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   setMinDateTime();
+  const fullScreenToggle = document.getElementById('fullScreenToggle');
+  const followupTableContainer = document.getElementById('followup-table-container');
+  const modalDialog = document.querySelector('.modal-dialog');
+
+  let isFullScreen = false;
+  let originalModelClass = modalDialog.className;
+
+  fullScreenToggle.addEventListener('click', function () {
+    if (!isFullScreen) {
+
+      fullScreenToggle.classList.add('exit-screen');
+      modalDialog.classList.add('modal-full-screen');
+      followupTableContainer.classList.add('full-screen');
+      fullScreenToggle.textContent = 'Exit Full Screen';
+    } else {
+
+      fullScreenToggle.classList.remove('exit-screen');
+      modalDialog.className = originalModelClass;
+      followupTableContainer.classList.remove('full-screen');
+      fullScreenToggle.textContent = 'Toggle Full Screen';
+
+    }
+    isFullScreen = !isFullScreen;
+  });
 });
 
 function getFolloups() {
@@ -86,20 +112,20 @@ function createFollowupTable(data) {
 
         {
 
-         
+
           data: 'FollowUpDate',
           title: 'FollowUpDate',
           render: function (data, type, row) {
-                 console.log(data);
+
             var followUpDate = new Date(data);
-            console.log(followUpDate);
-          
+
+
             followUpDate.setDate(followUpDate.getDate() + 1);
-          
+
             var formattedDate = followUpDate.toISOString().split('T')[0];
-            console.log(formattedDate);
+
             return formattedDate
-  
+
           },
         },
         { data: 'FollowUpTime', title: 'Follow-Up Time' },
@@ -123,7 +149,7 @@ function createFollowupTable(data) {
           orderable: false
         }
       ],
-      
+
     });
   }
 

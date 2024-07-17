@@ -30,7 +30,8 @@ namespace api_application.Controllers
                     Id = (int)row["UserId"],
                     Name = (string)row["Username"],
                     Email = (string)row["Email"],
-                    Role = (string)row["RoleName"]
+                    Role = (string)row["RoleName"],
+                    FirstLogin=(int)row["FirstLogin"],
                 };
             }
 

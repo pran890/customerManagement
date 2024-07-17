@@ -49,7 +49,9 @@ function generateFields(data) {
 function AddRole() {
 
   var id = document.getElementById("user").value;
-  var role = document.getElementById("role").value;
+  // var role = document.getElementById("role").value
+  var selectElement = document.getElementById("role");
+  var role = selectElement.options[selectElement.selectedIndex].text;
   var managerField = document.getElementById('manager').value;
   var coordinatorField = document.getElementById('coordinator').value;
   if(!managerField) managerField=0;
@@ -59,7 +61,7 @@ function AddRole() {
 
   var user = {
     Id: parseInt(id),
-    rId: parseInt(role),
+    roleName: role,
     cId:coordinatorField,
     mId:managerField
   };

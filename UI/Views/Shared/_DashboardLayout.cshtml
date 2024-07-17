@@ -51,13 +51,13 @@ bool hasSpecificPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Valu
                             <a class="nav-link text-dark" asp-area="" asp-controller="DashBoard"
                                 asp-action="AddC">AddCustomers</a>
                         </li>
-                        <li class="nav-item add-customers">
+                        <li class="nav-item view-tree">
                             <a class="nav-link text-dark" asp-area="" asp-controller="DashBoard"
                                 asp-action="Tree">ViewTree</a>
                         </li>
                         @if (hasSpecificPrivilege)
                         {
-                        <li class="nav-item add-customers">
+                        <li class="nav-item settings">
                             <a class="nav-link text-dark" asp-area="" asp-controller="DashBoard"
                                 asp-action="Admin">Settings</a>
                         </li>
@@ -108,10 +108,9 @@ bool hasSpecificPrivilege = User.Claims.Any(c => c.Type == "Privilege" && c.Valu
             &copy; 2024 - Customer_Management - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    @* <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+   
 
-        @* <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> *@
+    
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

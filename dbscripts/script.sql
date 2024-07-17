@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [customermanagement]    Script Date: 03-07-2024 18:38:33 ******/
+/****** Object:  Database [customermanagement]    Script Date: 17-07-2024 18:20:59 ******/
 CREATE DATABASE [customermanagement]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,7 +80,7 @@ ALTER DATABASE [customermanagement] SET QUERY_STORE = OFF
 GO
 USE [customermanagement]
 GO
-/****** Object:  Table [dbo].[Customers]    Script Date: 03-07-2024 18:38:33 ******/
+/****** Object:  Table [dbo].[Customers]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,7 +108,7 @@ UNIQUE NONCLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FollowUp]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  Table [dbo].[FollowUp]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -127,7 +127,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[FollowUpDetail]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  Table [dbo].[FollowUpDetail]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -150,7 +150,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Privileges]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  Table [dbo].[Privileges]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -165,7 +165,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RolePrivileges]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  Table [dbo].[RolePrivileges]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -180,7 +180,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -194,7 +194,17 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserRoles]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  Table [dbo].[userRelation]    Script Date: 17-07-2024 18:20:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[userRelation](
+	[Userid] [int] NULL,
+	[parentid] [int] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[UserRoles]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -209,7 +219,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -221,9 +231,7 @@ CREATE TABLE [dbo].[Users](
 	[Email] [varchar](100) NOT NULL,
 	[FirstName] [varchar](50) NULL,
 	[LastName] [varchar](50) NULL,
-	[ManagerId] [int] NULL,
-	[CoordinatorId] [int] NULL,
-	[ExecutiveId] [int] NULL,
+	[FirstLogin] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[UserId] ASC
@@ -239,6 +247,8 @@ GO
 ALTER TABLE [dbo].[FollowUpDetail] ADD  DEFAULT (getdate()) FOR [CreatedOn]
 GO
 ALTER TABLE [dbo].[FollowUpDetail] ADD  DEFAULT (getdate()) FOR [UpdatedOn]
+GO
+ALTER TABLE [dbo].[Users] ADD  DEFAULT ((0)) FOR [FirstLogin]
 GO
 ALTER TABLE [dbo].[Customers]  WITH CHECK ADD  CONSTRAINT [FK_Customer_Coordinator] FOREIGN KEY([CoordinatorId])
 REFERENCES [dbo].[Users] ([UserId])
@@ -296,6 +306,9 @@ GO
 ALTER TABLE [dbo].[RolePrivileges]  WITH CHECK ADD FOREIGN KEY([RoleId])
 REFERENCES [dbo].[Roles] ([RoleId])
 GO
+ALTER TABLE [dbo].[userRelation]  WITH CHECK ADD FOREIGN KEY([Userid])
+REFERENCES [dbo].[Users] ([UserId])
+GO
 ALTER TABLE [dbo].[UserRoles]  WITH CHECK ADD FOREIGN KEY([RoleId])
 REFERENCES [dbo].[Roles] ([RoleId])
 ON DELETE CASCADE
@@ -304,40 +317,28 @@ ALTER TABLE [dbo].[UserRoles]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[Users] ([UserId])
 ON DELETE CASCADE
 GO
-ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK_Users_Coordinator] FOREIGN KEY([CoordinatorId])
-REFERENCES [dbo].[Users] ([UserId])
-GO
-ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_Coordinator]
-GO
-ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK_Users_Executive] FOREIGN KEY([ExecutiveId])
-REFERENCES [dbo].[Users] ([UserId])
-GO
-ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_Executive]
-GO
-ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK_Users_Manager] FOREIGN KEY([ManagerId])
-REFERENCES [dbo].[Users] ([UserId])
-GO
-ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_Manager]
-GO
-/****** Object:  StoredProcedure [dbo].[usp_Add_Privelage]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Add_Privelage]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create PROCEDURE [dbo].[usp_Add_Privelage]
+CREATE PROCEDURE [dbo].[usp_Add_Privelage]
     @pcode varchar(50),
-    @desc  varchar(50)
+    @pdesc  varchar(50)
 AS
 BEGIN
     SET NOCOUNT ON;
-
-    -- Check if the UserId and RoleId pair already exists
-  
-        INSERT INTO Privileges( PrivilegeCode,Description) VALUES (@pcode, @desc);
+	 
+	 declare @rid int;
+	  DECLARE @pId INT;
+  select @rid=roleid from roles where rolename='Admin';
+        INSERT INTO Privileges( PrivilegeCode,Description) VALUES (@pcode, @pdesc);
+		 SET @pId = SCOPE_IDENTITY();
+		insert into rolePrivileges(RoleId,privilegeid)values (@rid,@pId);
     
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Add_Role_Privelage]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Add_Role_Privelage]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -361,14 +362,14 @@ BEGIN
     END
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Add_User_Role]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Add_User_Role]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[usp_Add_User_Role]
     @Id int,
-    @rId int,
+    @roleName varchar(50),
 	 @mId int,
     @cId int
 AS
@@ -382,27 +383,29 @@ BEGIN
 	begin
 	set @cid=null;
 	end
+	  DECLARE @rId INT;
 
+    -- Fetch RoleId based on RoleName
+    SELECT @rId = RoleId FROM Roles WHERE RoleName = @roleName;
     -- Check if the UserId and RoleId pair already exists
     IF NOT EXISTS (SELECT 1 FROM UserRoles WHERE UserId = @Id AND RoleId = @rId)
     BEGIN
-        -- Insert statement
+      
         INSERT INTO UserRoles (UserId, RoleId) VALUES (@Id, @rId);
-		if @rId=3 or @rid=4
-		begin
 		
-		  update users set managerid=@mid,coordinatorid=@cid where UserId=@id;
-		end
+		
+		  insert into userrelation (userid,parentid) values(@id,COALESCE(@cId,@mid));
+		
     END
     ELSE
     BEGIN
-        PRINT 'User role already exists'; -- Optionally handle the case where it already exists
+        PRINT 'User role already exists';
     END
 END;
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Edit_Followups]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Edit_Followups]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -445,14 +448,14 @@ BEGIN
     COMMIT TRANSACTION
 END
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Edit_role_privelage]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Edit_role_privelage]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE PROCEDURE [dbo].[usp_Edit_role_privelage]
-    @pId int,
+    @pId INT,
     @ar int,
     @mr int,
     @cr int,
@@ -461,18 +464,23 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    DECLARE @RoleId int
-    DECLARE @AssignRole bit
+    DECLARE @RoleId INT
+    DECLARE @AssignRole BIT
+    DECLARE @RoleName VARCHAR(50)
 
+    -- Create a cursor to iterate over the role assignments
     DECLARE RoleCursor CURSOR FOR
-    SELECT RoleId, AssignRole
-    FROM (VALUES (1, @ar), (2, @mr), (3, @cr), (4, @er)) AS RoleAssignments(RoleId, AssignRole)
+    SELECT RoleName, AssignRole
+    FROM (VALUES ('Admin', @ar), ('Manager', @mr), ('Coordinator', @cr), ('Executive', @er)) AS RoleAssignments(RoleName, AssignRole)
 
     OPEN RoleCursor
-    FETCH NEXT FROM RoleCursor INTO @RoleId, @AssignRole
+    FETCH NEXT FROM RoleCursor INTO @RoleName, @AssignRole
 
     WHILE @@FETCH_STATUS = 0
     BEGIN
+        -- Fetch the RoleId based on RoleName
+        SELECT @RoleId = RoleId FROM Roles WHERE RoleName = @RoleName
+
         IF @AssignRole = 1
         BEGIN
             IF NOT EXISTS (SELECT 1 FROM RolePrivileges WHERE RoleId = @RoleId AND PrivilegeId = @pId)
@@ -485,14 +493,14 @@ BEGIN
             DELETE FROM RolePrivileges WHERE RoleId = @RoleId AND PrivilegeId = @pId
         END
 
-        FETCH NEXT FROM RoleCursor INTO @RoleId, @AssignRole
+        FETCH NEXT FROM RoleCursor INTO @RoleName, @AssignRole
     END
 
     CLOSE RoleCursor
     DEALLOCATE RoleCursor
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Edit_user_role]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Edit_user_role]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -515,7 +523,7 @@ BEGIN
     END
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_get_Privelage]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_get_Privelage]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -547,7 +555,24 @@ BEGIN
         p.PrivilegeId, p.PrivilegeCode, rp.Roles,p.Description;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetAll_User]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Get_User_details]    Script Date: 17-07-2024 18:20:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- Create stored procedure for inserting records into Customers table
+CREATE PROCEDURE [dbo].[usp_Get_User_details]
+  @email varchar(50),@password varchar(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+ SELECT u.UserId,  u.Username,    u.Email,u.firstlogin  ,   r.RoleName FROM      Users u JOIN     UserRoles ur ON u.UserId = ur.UserId JOIN    Roles r ON ur.RoleId = r.RoleId WHERE   u.Email = @Email  AND u.Password = @Password
+
+    
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[usp_GetAll_User]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -573,7 +598,7 @@ BEGIN
 
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetPrivilegesByRoleId]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetPrivilegesByRoleId]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -584,7 +609,7 @@ CREATE PROCEDURE [dbo].[usp_GetPrivilegesByRoleId]
 AS
 BEGIN
     SET NOCOUNT ON;
-
+	update users set firstlogin=1 where UserId = @Id;
     -- Insert statement
 SELECT p.PrivilegeCode, p.Description 
 FROM Privileges p
@@ -597,7 +622,7 @@ WHERE u.UserId = @Id;
     
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetRelatedCustomersDetails]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetRelatedCustomersDetails]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -610,97 +635,94 @@ BEGIN
     DECLARE @RoleName VARCHAR(100);
 
     -- Get the role and username of the specified user
-  SELECT 
-    @Username = u.Username,
-    @RoleName = r.RoleName
-FROM Users u
-JOIN UserRoles ur ON u.UserId = ur.UserId
-JOIN Roles r ON ur.RoleId = r.RoleId
-WHERE u.UserId = @UserId;
-
+    SELECT 
+        @Username = u.Username,
+        @RoleName = r.RoleName
+    FROM Users u
+    JOIN UserRoles ur ON u.UserId = ur.UserId
+    JOIN Roles r ON ur.RoleId = r.RoleId
+    WHERE u.UserId = @UserId;
 
     -- Check if the user is an admin
     IF @RoleName = 'Admin'
     BEGIN
         -- Fetch all Customer details with their associations
         SELECT 
-    c.CustomerId AS cid,
-    c.createdOn AS createdDate,
-    c.Phoneno AS phoneNo,
-    c.Description AS description,
-    c.domain AS domain,
-    u.Username AS Username,
-    c.Name AS CustomerName,
-    e.Username AS ExecutiveName,
-    cco.Username AS CoordinatorName,
-    m.Username AS ManagerName,
-    SUM(CASE WHEN fd.status = 'done' THEN 1 ELSE 0 END) AS DoneCount,
-    SUM(CASE WHEN fd.status = 'scheduled' THEN 1 ELSE 0 END) AS ScheduledCount,
-    SUM(CASE WHEN fd.status = 'due' THEN 1 ELSE 0 END) AS dueCount,
-    COUNT(fd.status) AS TotalFollowUps
-FROM Customers c
-LEFT JOIN Users e ON c.ExecutiveId = e.UserId
-LEFT JOIN Users cco ON c.CoordinatorId = cco.UserId
-LEFT JOIN Users m ON c.ManagerId = m.UserId
-LEFT JOIN Users u ON u.UserId = @UserId
-LEFT JOIN FollowUp f ON f.CustomerId = c.CustomerId
-LEFT JOIN FollowUpDetail fd ON fd.followupid = f.id
-GROUP BY 
-    c.CustomerId, 
-    c.createdOn, 
-    c.Phoneno, 
-    c.Description, 
-    c.domain, 
-    u.Username, 
-    c.Name, 
-    e.Username, 
-    cco.Username, 
-    m.Username;
+            c.CustomerId AS cid,
+            c.createdOn AS createdDate,
+            c.Phoneno AS phoneNo,
+			   u.Username AS Username,
+            c.Description AS description,
+            c.domain AS domain,
+            c.Name AS CustomerName,
+            e.Username AS ExecutiveName,
+            cco.Username AS CoordinatorName,
+            m.Username AS ManagerName,
+            SUM(CASE WHEN fd.status = 'done' THEN 1 ELSE 0 END) AS DoneCount,
+            SUM(CASE WHEN fd.status = 'scheduled' THEN 1 ELSE 0 END) AS ScheduledCount,
+            SUM(CASE WHEN fd.status = 'due' THEN 1 ELSE 0 END) AS dueCount,
+            COUNT(fd.status) AS TotalFollowUps
+        FROM Customers c
+        LEFT JOIN Users e ON c.ExecutiveId = e.UserId
+        LEFT JOIN Users cco ON c.CoordinatorId = cco.UserId
+		LEFT JOIN Users u ON u.UserId = @UserId
+        LEFT JOIN Users m ON c.ManagerId = m.UserId
+        LEFT JOIN FollowUp f ON f.CustomerId = c.CustomerId
+        LEFT JOIN FollowUpDetail fd ON fd.followupid = f.id
+        GROUP BY 
+            c.CustomerId, 
+            c.createdOn, 
+            c.Phoneno, 
+            c.Description, 
+			 u.Username, 
+            c.domain, 
+            c.Name, 
+            e.Username, 
+            cco.Username, 
+            m.Username;
     END
     ELSE
     BEGIN
         -- Fetch Customer details with their associations for the specified UserId
-       SELECT 
-    c.CustomerId AS cid,
-    c.createdOn AS createdDate,
-    c.Phoneno AS phoneNo,
-    c.Description AS description,
-    c.domain AS domain,
-    u.Username AS Username,
-    c.Name AS CustomerName,
-    e.Username AS ExecutiveName,
-    cco.Username AS CoordinatorName,
-    m.Username AS ManagerName,
-    SUM(CASE WHEN fd.status = 'done' THEN 1 ELSE 0 END) AS DoneCount,
-    SUM(CASE WHEN fd.status = 'scheduled' THEN 1 ELSE 0 END) AS ScheduledCount,
-    SUM(CASE WHEN fd.status = 'due' THEN 1 ELSE 0 END) AS dueCount,
-    COUNT(fd.status) AS TotalFollowUps
-FROM Customers c
-LEFT JOIN Users e ON c.ExecutiveId = e.UserId
-LEFT JOIN Users cco ON c.CoordinatorId = cco.UserId
-LEFT JOIN Users m ON c.ManagerId = m.UserId
-LEFT JOIN Users u ON u.UserId = @UserId
-LEFT JOIN FollowUp f ON f.CustomerId = c.CustomerId
-LEFT JOIN FollowUpDetail fd ON fd.followupid = f.id
-WHERE c.ManagerId = @UserId OR c.CoordinatorId = @UserId OR c.ExecutiveId = @UserId
-GROUP BY 
-    c.CustomerId, 
-    c.createdOn, 
-    c.Phoneno, 
-    c.Description, 
-    c.domain, 
-    u.Username, 
-    c.Name, 
-    e.Username, 
-    cco.Username, 
-    m.Username;
-
+        SELECT 
+            c.CustomerId AS cid,
+            c.createdOn AS createdDate,
+            c.Phoneno AS phoneNo,
+			   u.Username AS Username,
+            c.Description AS description,
+            c.domain AS domain,
+            c.Name AS CustomerName,
+            e.Username AS ExecutiveName,
+            cco.Username AS CoordinatorName,
+            m.Username AS ManagerName,
+            SUM(CASE WHEN fd.status = 'done' THEN 1 ELSE 0 END) AS DoneCount,
+            SUM(CASE WHEN fd.status = 'scheduled' THEN 1 ELSE 0 END) AS ScheduledCount,
+            SUM(CASE WHEN fd.status = 'due' THEN 1 ELSE 0 END) AS dueCount,
+            COUNT(fd.status) AS TotalFollowUps
+        FROM Customers c
+        LEFT JOIN Users e ON c.ExecutiveId = e.UserId
+        LEFT JOIN Users cco ON c.CoordinatorId = cco.UserId
+			LEFT JOIN Users u ON u.UserId = @UserId
+        LEFT JOIN Users m ON c.ManagerId = m.UserId
+        LEFT JOIN FollowUp f ON f.CustomerId = c.CustomerId
+        LEFT JOIN FollowUpDetail fd ON fd.followupid = f.id
+        JOIN UserRelation ur ON (c.ManagerId = ur.UserId OR c.CoordinatorId = ur.UserId OR c.ExecutiveId = ur.UserId)
+        WHERE ur.ParentId = @UserId
+        GROUP BY 
+            c.CustomerId, 
+            c.createdOn, 
+            c.Phoneno, 
+            c.Description, 
+			 u.Username, 
+            c.domain, 
+            c.Name, 
+            e.Username, 
+            cco.Username, 
+            m.Username;
     END
 END;
-
-
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetRelatedFollowupDetails]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetRelatedFollowupDetails]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -783,7 +805,7 @@ BEGIN
     END
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_GetRelatedUsers]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetRelatedUsers]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -792,79 +814,11 @@ CREATE PROCEDURE [dbo].[usp_GetRelatedUsers]
     @UserId INT
 AS
 BEGIN
-    DECLARE @UserRoleId INT;
+    DECLARE @UserRoleName varchar(50);
 
     -- Get the role of the specified user
-    SELECT @UserRoleId = RoleId
-    FROM Users
-    WHERE UserId = @UserId;
-
-    -- Fetch the user itself
-    SELECT DISTINCT
-        u.UserId,
-        u.Username,
-        r.RoleName
-    FROM Users u
-    JOIN Roles r ON u.RoleId = r.RoleId
-    WHERE u.UserId = @UserId
-
-    UNION ALL
-
-    -- Manager: fetch coordinators and executives directly under the manager
-    SELECT DISTINCT
-        u.UserId,
-        u.Username,
-        r.RoleName
-    FROM Users u
-    JOIN Roles r ON u.RoleId = r.RoleId
-    WHERE @UserRoleId = 2 AND (
-        u.ManagerId = @UserId OR
-        u.CoordinatorId IN (SELECT UserId FROM Users WHERE ManagerId = @UserId)
-    )
-
-    UNION ALL
-
-    -- Coordinator: fetch executives under the coordinator and the manager of the coordinator
-    SELECT DISTINCT
-        u.UserId,
-        u.Username,
-        r.RoleName
-    FROM Users u
-    JOIN Roles r ON u.RoleId = r.RoleId
-    WHERE @UserRoleId = 3 AND (
-        u.CoordinatorId = @UserId OR
-        u.UserId = (SELECT ManagerId FROM Users WHERE UserId = @UserId)
-    )
-
-    UNION ALL
-
-    -- Executive: fetch manager and coordinator of the executive
-    SELECT DISTINCT
-        u.UserId,
-        u.Username,
-        r.RoleName
-    FROM Users u
-    JOIN Roles r ON u.RoleId = r.RoleId
-    WHERE @UserRoleId = 4 AND (
-        u.UserId = (SELECT ManagerId FROM Users WHERE UserId = @UserId) OR
-        u.UserId = (SELECT CoordinatorId FROM Users WHERE UserId = @UserId)
-    );
-END;
-GO
-/****** Object:  StoredProcedure [dbo].[usp_GetRelatedUsersa]    Script Date: 03-07-2024 18:38:34 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[usp_GetRelatedUsersa]
-    @UserId INT
-AS
-BEGIN
-    DECLARE @UserRoleId INT;
-
-    -- Get the role of the specified user
-    SELECT @UserRoleId = RoleId
-    FROM UserRoles
+    SELECT @UserRoleName = r.Rolename
+    FROM UserRoles as ur inner join roles as r on r.RoleId=ur.RoleId
     WHERE UserId = @UserId;
 
     -- Fetch the user itself
@@ -887,7 +841,7 @@ BEGIN
     FROM Users u
     JOIN UserRoles ur ON u.UserId = ur.UserId
     JOIN Roles r ON ur.RoleId = r.RoleId
-    WHERE @UserRoleId = 1
+    WHERE @UserRoleName = 'Admin'
 
     UNION ALL
 
@@ -899,7 +853,7 @@ BEGIN
     FROM Users u
     JOIN UserRoles ur ON u.UserId = ur.UserId
     JOIN Roles r ON ur.RoleId = r.RoleId
-    WHERE @UserRoleId = 2 AND (
+    WHERE @UserRoleName = 'Manager' AND (
         u.ManagerId = @UserId OR
         u.CoordinatorId IN (SELECT UserId FROM Users WHERE ManagerId = @UserId)
     )
@@ -914,7 +868,7 @@ BEGIN
     FROM Users u
     JOIN UserRoles ur ON u.UserId = ur.UserId
     JOIN Roles r ON ur.RoleId = r.RoleId
-    WHERE @UserRoleId = 3 AND (
+    WHERE @UserRoleName = 'Coordinator' AND (
         u.CoordinatorId = @UserId OR
         u.UserId = (SELECT ManagerId FROM Users WHERE UserId = @UserId)
     )
@@ -929,13 +883,100 @@ BEGIN
     FROM Users u
     JOIN UserRoles ur ON u.UserId = ur.UserId
     JOIN Roles r ON ur.RoleId = r.RoleId
-    WHERE @UserRoleId = 4 AND (
+    WHERE @UserRoleName = 'Execuitve' AND (
         u.UserId = (SELECT ManagerId FROM Users WHERE UserId = @UserId) OR
         u.UserId = (SELECT CoordinatorId FROM Users WHERE UserId = @UserId)
     );
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_getUsers]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_GetRelatedUsersa]    Script Date: 17-07-2024 18:20:59 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[usp_GetRelatedUsersa]
+    @UserId INT
+AS
+BEGIN
+    DECLARE @UserRoleName NVARCHAR(50);
+
+    -- Get the role of the specified user
+    SELECT @UserRoleName = r.RoleName
+    FROM UserRoles ur
+    JOIN Roles r ON ur.RoleId = r.RoleId
+    WHERE ur.UserId = @UserId;
+
+    -- Fetch the user itself
+    SELECT DISTINCT
+        u.UserId,
+        u.Username,
+        r.RoleName
+    FROM Users u
+    JOIN UserRoles ur1 ON u.UserId = ur1.UserId
+    JOIN Roles r ON ur1.RoleId = r.RoleId
+    WHERE u.UserId = @UserId
+
+    UNION ALL
+
+    -- Admin: fetch all users
+    SELECT DISTINCT
+        u.UserId,
+        u.Username,
+        r.RoleName
+    FROM Users u
+    JOIN UserRoles ur2 ON u.UserId = ur2.UserId
+    JOIN Roles r ON ur2.RoleId = r.RoleId
+    WHERE @UserRoleName = 'Admin'
+
+    UNION ALL
+
+    -- Manager: fetch users directly or indirectly under the manager
+    SELECT DISTINCT
+        u.UserId,
+        u.Username,
+        r.RoleName
+    FROM Users u
+    JOIN UserRoles ur3 ON u.UserId = ur3.UserId
+    JOIN Roles r ON ur3.RoleId = r.RoleId
+    JOIN UserRelation ur4 ON u.UserId = ur4.UserId
+    WHERE @UserRoleName = 'Manager' AND (
+        ur4.ParentId = @UserId OR ur4.ParentId IN (SELECT UserId FROM UserRelation WHERE ParentId = @UserId)
+    )
+
+    UNION ALL
+
+    -- Coordinator: fetch executives under the coordinator and the manager of the coordinator
+    SELECT DISTINCT
+        u.UserId,
+        u.Username,
+        r.RoleName
+    FROM Users u
+    JOIN UserRoles ur5 ON u.UserId = ur5.UserId
+    JOIN Roles r ON ur5.RoleId = r.RoleId
+    JOIN UserRelation ur6 ON u.UserId = ur6.UserId
+    WHERE @UserRoleName = 'Coordinator' AND (
+        ur6.ParentId = @UserId OR
+        u.UserId = (SELECT ParentId FROM UserRelation WHERE UserId = @UserId)
+    )
+
+    UNION ALL
+
+    -- Executive: fetch manager and coordinator of the executive
+    SELECT DISTINCT
+        u.UserId,
+        u.Username,
+        r.RoleName
+    FROM Users u
+    JOIN UserRoles ur7 ON u.UserId = ur7.UserId
+    JOIN Roles r ON ur7.RoleId = r.RoleId
+    JOIN UserRelation ur8 ON u.UserId = ur8.UserId
+    WHERE @UserRoleName = 'Executive' AND (
+        u.UserId = (SELECT ParentId FROM UserRelation WHERE UserId = @UserId) OR
+        u.UserId = (SELECT ParentId FROM UserRelation WHERE UserId = (SELECT ParentId FROM UserRelation WHERE UserId = @UserId))
+    );
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[usp_getUsers]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -953,7 +994,7 @@ select u.username,u.userid ,r.rolename from users u inner join Roles r on r.Role
     
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Insert_Customer]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Insert_Customer]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -975,7 +1016,7 @@ BEGIN
     
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Insert_Followups]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Insert_Followups]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1015,7 +1056,7 @@ BEGIN
     COMMIT TRANSACTION
 END
 GO
-/****** Object:  StoredProcedure [dbo].[usp_Insert_User]    Script Date: 03-07-2024 18:38:34 ******/
+/****** Object:  StoredProcedure [dbo].[usp_Insert_User]    Script Date: 17-07-2024 18:20:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1039,3 +1080,11 @@ USE [master]
 GO
 ALTER DATABASE [customermanagement] SET  READ_WRITE 
 GO
+
+
+// Sample data for privelages
+PrivilegeId	PrivilegeCode	Description
+2	Settings	Can edit users
+3	AddFollowup	can add followup
+6	EditCustomers	Can edit customers and details.
+7	EditFollowups	Can edit followup and details.
