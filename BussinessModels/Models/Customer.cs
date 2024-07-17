@@ -14,5 +14,7 @@ namespace CRUD.Models
         public int? ManagerId { get; set; }
         public int? CoordinatorId  { get; set; }
         public int? ExecutiveId  { get; set; }
+         public string? Description { get; set; }
+            public string? Phoneno { get; set; }
     }
 }
