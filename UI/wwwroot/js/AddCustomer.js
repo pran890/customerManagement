@@ -51,7 +51,7 @@ var customer={
 
 
 
-function getUsers(id,p) {
+function getUsers(id) {
   var uid = parseInt(localStorage.getItem("userId"));
    if(id) uid=id;
   console.log(uid);
@@ -63,7 +63,7 @@ function getUsers(id,p) {
     type: "GET",
     success: function (result) {
       console.log(result);
-      generateFields(result,p);
+      generateFields(result);
     },
     error: function (error) {
       console.log(error);
