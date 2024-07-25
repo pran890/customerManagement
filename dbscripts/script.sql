@@ -706,14 +706,15 @@ BEGIN
         LEFT JOIN Users m ON c.ManagerId = m.UserId
         LEFT JOIN FollowUp f ON f.CustomerId = c.CustomerId
         LEFT JOIN FollowUpDetail fd ON fd.followupid = f.id
-        JOIN UserRelation ur ON (c.ManagerId = ur.UserId OR c.CoordinatorId = ur.UserId OR c.ExecutiveId = ur.UserId)
-        WHERE ur.ParentId = @UserId
+       JOIN UserRelation ur ON ur.UserId = @UserId
+        WHERE (c.ManagerId = @UserId OR c.CoordinatorId = @UserId OR c.ExecutiveId = @UserId)
+        OR (ur.ParentId = @UserId AND (c.ManagerId = ur.UserId OR c.CoordinatorId = ur.UserId OR c.ExecutiveId = ur.UserId))
         GROUP BY 
             c.CustomerId, 
             c.createdOn, 
             c.Phoneno, 
             c.Description, 
-			 u.Username, 
+            u.Username, 
             c.domain, 
             c.Name, 
             e.Username, 
