@@ -1012,9 +1012,17 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Insert statement
-    INSERT INTO Customers (Email, Name, ManagerId, CoordinatorId, ExecutiveId,Description,Phoneno)
+   IF EXISTS (SELECT 1 FROM Customers WHERE email=@Email)
+    BEGIN
+    
+	 RAISERROR ('Email already exist.',  16,   1  );
+      -- PRINT 'email already exist'; 
+    END
+    ELSE
+    BEGIN
+       INSERT INTO Customers (Email, Name, ManagerId, CoordinatorId, ExecutiveId,Description,Phoneno)
     VALUES (@Email, @Name, @ManagerId, @CoordinatorId, @ExecutiveId,@Description,@Phoneno);
+    END
 
     
 END;
@@ -1072,9 +1080,20 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Insert statement
-    INSERT INTO users (Email, UserName, password)
+  IF EXISTS (SELECT 1 FROM Users WHERE email=@Email)
+    BEGIN
+    
+      -- PRINT 'Email already exist'; 
+	    RAISERROR ('Email already exist.', 
+               16, 
+               1 
+               );
+    END
+    ELSE
+    BEGIN
+      INSERT INTO users (Email, UserName, password)
     VALUES (@Email, @Name, @password);
+    END
 
     
 END;
